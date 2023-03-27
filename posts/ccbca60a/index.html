@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>用户消费行为数据分析 | Free</title><meta name="author" content="wwh"><meta name="copyright" content="wwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="用户消费行为的分析项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户消费行为数据分析">
+<meta property="og:url" content="https://whfree.top/posts/ccbca60a/index.html">
+<meta property="og:site_name" content="Free">
+<meta property="og:description" content="用户消费行为的分析项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.whfree.top/post_cover/user_date_analysis_ccbca60a.jpg">
+<meta property="article:published_time" content="2021-10-05T01:02:21.000Z">
+<meta property="article:modified_time" content="2023-03-27T14:14:48.964Z">
+<meta property="article:author" content="wwh">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="数据分析">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.whfree.top/post_cover/user_date_analysis_ccbca60a.jpg"><link rel="shortcut icon" href="https://img.whfree.top/website_icon/free_man_circle.png"><link rel="canonical" href="https://whfree.top/posts/ccbca60a/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '用户消费行为数据分析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-27 22:14:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.whfree.top/post_cover/user_date_analysis_ccbca60a.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Free"><img class="site-icon" src="https://img.whfree.top/website_icon/free_man_circle.png"/><span class="site-name">Free</span></a></span><div id="he-plugin-simple"></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">用户消费行为数据分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-05T01:02:21.000Z" title="发表于 2021-10-05 09:02:21">2021-10-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-27T14:14:48.964Z" title="更新于 2023-03-27 22:14:48">2023-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="用户消费行为数据分析"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info modern"><p>关于本文的所有数据与代码均已上传至<a target="_blank" rel="noopener" href="https://github.com/freedomgod/whfree_notebook/tree/main/analysis_behaviour_data">GitHub</a>，也可直接查看：<a target="_blank" rel="noopener" href="https://nbviewer.org/github/freedomgod/whfree_notebook/blob/main/analysis_behaviour_data/behavior_analysis.ipynb">Jupyter nbviewer</a>。</p>
+<p>如果文章中有任何错误，非常希望读者能够批评指正！</p>
+</div>
+<p>看到一个用户消费行为价值分析的题目，要求是对数据进行预处理及可视化，然后根据用户的行为，判断用户是否会下单或下单购买的概率。于是我按照数据分析的流程进行分析，使用了Logistic、决策树和支持向量机三种模型去对用户是否下单进行分类，同时也能得到对应的概率。</p>
+<p>题目要求如下：</p>
+<ol>
+<li><p>获取数据并进行预处理，提高数据质量；</p>
+</li>
+<li><p>对用户的各城市分布情况、登录情况进行分析，并分别将结果进行多种形式的可视化展现；</p>
+</li>
+<li><p>构建模型判断用户最终是否会下单购买或下单购买的概率，并将模型结果输出为csv文件（参照结果输出样sample_output.csv）。要求模型的效果达到85%以上；</p>
+</li>
+<li><p>通过用户消费行为价值分析，给企业提出合理的建议。</p>
+</li>
+</ol>
+<p>包含数据：</p>
+<ol>
+<li><p>user_info.csv：用户信息表</p>
+</li>
+<li><p>login_day.csv: 用户登录情况表</p>
+</li>
+<li><p>visit_info.csv: 用户访问统计表</p>
+</li>
+<li><p>result.csv: 用户下单表</p>
+</li>
+</ol>
+<p><img src="https://img.whfree.top//%E5%AD%97%E6%AE%B5%E8%AF%B4%E6%98%8E.png" alt="字段说明"></p>
+<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>读取数据的过程就不说了，数据格式均为csv文件，可以用pandas的<code>read_csv</code>方法读取。</p>
+<p>首先查看数据的缺失情况，用<code>isnull()</code>和<code>any()</code>方法查看字段是否有缺失。</p>
+<pre class="language-python" data-language="python"><code class="language-python">user_info_df<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">any</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token operator">></span>
+user_id              <span class="token boolean">False</span>
+first_order_time     <span class="token boolean">False</span>
+first_order_price    <span class="token boolean">False</span>
+age_month            <span class="token boolean">False</span>
+city_num              <span class="token boolean">True</span>
+platform_num         <span class="token boolean">False</span>
+model_num            <span class="token boolean">False</span>
+app_num              <span class="token boolean">False</span>
+dtype<span class="token punctuation">:</span> <span class="token builtin">bool</span></code></pre>
+<p>所有数据中只有城市(city_num)字段有缺失，但是这一类值没有比较好的方法去填充，所以考虑把所有缺失值替换为”unknown”字符串。此外，字段中还有一个例外值为”error”，也同样替换为”unknown”。</p>
+<pre class="language-python" data-language="python"><code class="language-python">user_info <span class="token operator">=</span> user_info_df<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>nan<span class="token punctuation">)</span>  <span class="token comment"># 出现error值的替换为NaN</span>
+user_info <span class="token operator">=</span> user_info<span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token string">'unknown'</span><span class="token punctuation">)</span>  <span class="token comment"># 暂时用unknown值填补缺失值</span></code></pre>
+<p>随后可以明显的发现年龄这个字段有异常值，正常范围应当处于1~150，这里我将范围缩小到5~100，即这个范围之外的值均为异常值，而正常来说，有的数据集可以使用多种方式来处理，比如用正确的值更正，可以利用回归或者均值填充，也可以丢弃这个样例，但是这里异常的值有比较多，又无法找出相似的样例用均值填充，所以还是决定全换成0，表明是同一种情况。</p>
+<pre class="language-python" data-language="python"><code class="language-python">user_info<span class="token punctuation">[</span><span class="token punctuation">(</span>user_info<span class="token punctuation">[</span><span class="token string">'age_month'</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>user_info<span class="token punctuation">[</span><span class="token string">'age_month'</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+ab_idx <span class="token operator">=</span> user_info<span class="token punctuation">[</span><span class="token punctuation">(</span>user_info<span class="token punctuation">[</span><span class="token string">'age_month'</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>user_info<span class="token punctuation">[</span><span class="token string">'age_month'</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>index
+user_info<span class="token punctuation">.</span>loc<span class="token punctuation">[</span>ab_idx<span class="token punctuation">,</span> <span class="token string">'age_month'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span></code></pre>
+<p>至此，数据比较完整，进入下一步。</p>
+<h1 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h1><div class="note info modern"><p>以下可视化选择的是<a target="_blank" rel="noopener" href="https://gallery.pyecharts.org/#/">pyecharts</a>工具</p>
+</div>
+<h2 id="城市"><a href="#城市" class="headerlink" title="城市"></a>城市</h2><p>按照用户的城市地区可以绘制城市的分布情况</p>
+<iframe frameborder="0" width="800px" height="600px" src="/iframe_html/ccbca60a/city_map.html"></iframe>
+
+<pre class="language-python" data-language="python"><code class="language-python">city_counts <span class="token operator">=</span> user_info<span class="token punctuation">[</span><span class="token string">'city_num'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span>
+city_counts_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span> <span class="token keyword">for</span> x<span class="token punctuation">,</span> y <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>city_counts<span class="token punctuation">.</span>index<span class="token punctuation">,</span> city_counts<span class="token punctuation">.</span>values<span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'area_data.json'</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
+    area_data <span class="token operator">=</span> json<span class="token punctuation">.</span>load<span class="token punctuation">(</span>fp<span class="token punctuation">)</span>
+city_distribution <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">for</span> k <span class="token keyword">in</span> area_data<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	city_distribution<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">for</span> c <span class="token keyword">in</span> city_counts_list<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> area_data<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> v<span class="token punctuation">:</span>
+        	<span class="token keyword">if</span> c<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">in</span> i<span class="token punctuation">:</span>
+                city_distribution<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+=</span> c<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+city_dist <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> city_distribution<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+	city_dist<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>k<span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 一个坑：原本为numpy.int64数据类型，但是在Map画图中显示不了值，只能先转为int</span>
+city_map <span class="token operator">=</span> <span class="token punctuation">(</span>
+	Map<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"800px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"600px"</span><span class="token punctuation">,</span>
+                                chart_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> bg_color<span class="token operator">=</span><span class="token string">'#ADD8E6'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 可切换主题</span>
+	<span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        title_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>TitleOpts<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">"用户城市分布图"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        visualmap_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>VisualMapOpts<span class="token punctuation">(</span>
+            min_<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>
+            max_<span class="token operator">=</span><span class="token number">13000</span><span class="token punctuation">,</span>
+            range_text<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'人数区间:'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment"># 分区间</span>
+            is_piecewise<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>    <span class="token comment"># 定义图例为分段型，默认为连续的图例</span>
+            pos_top<span class="token operator">=</span><span class="token string">"middle"</span><span class="token punctuation">,</span>     <span class="token comment"># 分段位置</span>
+            pos_left<span class="token operator">=</span><span class="token string">"left"</span><span class="token punctuation">,</span>
+            orient<span class="token operator">=</span><span class="token string">"vertical"</span><span class="token punctuation">,</span>
+            split_number<span class="token operator">=</span><span class="token number">8</span>    <span class="token comment"># 分成8个区间</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token string">"城市分布"</span><span class="token punctuation">,</span> city_dist<span class="token punctuation">,</span> maptype<span class="token operator">=</span><span class="token string">"china"</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<h2 id="年龄"><a href="#年龄" class="headerlink" title="年龄"></a>年龄</h2><p>年龄分布按照下面分段进行分类，绘制年龄分布的柱状图</p>
+<div class="mermaid-wrap"><pre class="mermaid-src" hidden>
+  
+flowchart LR
+	A(0)---|未知|B(1)
+	B---|儿童|C(7)
+	C---|少年|D(18)
+	D---|青年|E(41)
+	E---|中年|F(66)
+	F---|老年|G(101)
+
+  </pre></div>
+<iframe frameborder="0" width="800px" height="600px" src="/iframe_html/ccbca60a/age_bar.html"></iframe>
+
+<pre class="language-python" data-language="python"><code class="language-python">age_label <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'未知'</span><span class="token punctuation">,</span> <span class="token string">'儿童'</span><span class="token punctuation">,</span> <span class="token string">'少年'</span><span class="token punctuation">,</span> <span class="token string">'青年'</span><span class="token punctuation">,</span> <span class="token string">'中年'</span><span class="token punctuation">,</span> <span class="token string">'老年'</span><span class="token punctuation">]</span>
+age_fields <span class="token operator">=</span> pd<span class="token punctuation">.</span>cut<span class="token punctuation">(</span>user_info<span class="token punctuation">[</span><span class="token string">'age_month'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">,</span> <span class="token number">66</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    right<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> labels<span class="token operator">=</span>age_label<span class="token punctuation">)</span>
+
+age_lis <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span>age_fields<span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+age_prop <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">round</span><span class="token punctuation">(</span>x<span class="token operator">*</span><span class="token number">100</span><span class="token operator">/</span><span class="token builtin">sum</span><span class="token punctuation">(</span>age_lis<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> age_lis<span class="token punctuation">]</span>
+
+age_bar <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Bar<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"800px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"600px"</span><span class="token punctuation">,</span>
+                                chart_id<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> bg_color<span class="token operator">=</span><span class="token string">'#ADD8E6'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span>age_label<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">"各年龄阶段人数"</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>age_lis<span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>position<span class="token operator">=</span><span class="token string">'inside'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">"各年龄阶段占比"</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>age_prop<span class="token punctuation">,</span>
+        yaxis_index<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>formatter<span class="token operator">=</span><span class="token string">"&#123;c&#125; %"</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token string">'inside'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>extend_axis<span class="token punctuation">(</span>
+        yaxis<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"百分比"</span><span class="token punctuation">,</span>
+            type_<span class="token operator">=</span><span class="token string">"value"</span><span class="token punctuation">,</span>
+            interval<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+            axislabel_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>formatter<span class="token operator">=</span><span class="token string">"&#123;value&#125; %"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        yaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"人数"</span><span class="token punctuation">,</span>
+            type_<span class="token operator">=</span><span class="token string">"value"</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        title_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>TitleOpts<span class="token punctuation">(</span><span class="token string">"年龄分布柱状图"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<h2 id="下单金额"><a href="#下单金额" class="headerlink" title="下单金额"></a>下单金额</h2><p>统计出数据中每月的订单金额，顺便计算出每月的用户人均付费。</p>
+<iframe frameborder="0" width="800px" height="600px" src="/iframe_html/ccbca60a/order_timeline_bar.html"></iframe>
+
+<pre class="language-python" data-language="python"><code class="language-python">user_info<span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">]</span> <span class="token operator">=</span> pd<span class="token punctuation">.</span>to_datetime<span class="token punctuation">(</span>user_info<span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 转换为datetime数据类型</span>
+
+order_tl <span class="token operator">=</span> Timeline<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>chart_id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> yr <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">2020</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    yr_df <span class="token operator">=</span> user_info<span class="token punctuation">[</span>user_info<span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>year <span class="token operator">==</span> yr<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">,</span> <span class="token string">'first_order_price'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    x_month <span class="token operator">=</span> yr_df<span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>month<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>unique<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'int'</span><span class="token punctuation">)</span>
+
+    y_price <span class="token operator">=</span> <span class="token punctuation">[</span>yr_df<span class="token punctuation">[</span>yr_df<span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>month <span class="token operator">==</span> p<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'first_order_price'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">for</span> p <span class="token keyword">in</span> x_month<span class="token punctuation">]</span>
+    avg_price <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">round</span><span class="token punctuation">(</span>yr_df<span class="token punctuation">[</span>yr_df<span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>month <span class="token operator">==</span> p<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'first_order_price'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">for</span> p <span class="token keyword">in</span> x_month<span class="token punctuation">]</span>
+    yr_bar <span class="token operator">=</span> <span class="token punctuation">(</span>
+        Bar<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"800px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"600px"</span><span class="token punctuation">,</span>
+                                    bg_color<span class="token operator">=</span><span class="token string">'#ADD8E6'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'月'</span> <span class="token keyword">for</span> m <span class="token keyword">in</span> x_month<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span><span class="token string">"月度收入"</span><span class="token punctuation">,</span> y_price<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span><span class="token string">"人均付费(ARPU)"</span><span class="token punctuation">,</span> avg_price<span class="token punctuation">,</span> yaxis_index<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>extend_axis<span class="token punctuation">(</span>yaxis<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>type_<span class="token operator">=</span><span class="token string">"value"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>title_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>TitleOpts<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">&#123;</span>yr<span class="token punctuation">&#125;</span></span><span class="token string">年订单金额"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    order_tl<span class="token punctuation">.</span>add<span class="token punctuation">(</span>yr_bar<span class="token punctuation">,</span> <span class="token string">"&#123;&#125;年"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>yr<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h2 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h2><p>饼图是针对具有分类意义的字段，即使值可能是数值型，如是否关注公众号1、是否添加销售好友等，用饼图展现用户在这方面的占比情况。</p>
+<iframe frameborder="0" width="800px" height="600px" src="/iframe_html/ccbca60a/nested_pies.html"></iframe>
+
+<pre class="language-python" data-language="python"><code class="language-python">pie_data_x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"否"</span><span class="token punctuation">,</span> <span class="token string">"是"</span><span class="token punctuation">]</span>
+
+chinese_sub_y <span class="token operator">=</span> login_day<span class="token punctuation">[</span><span class="token string">'chinese_subscribe_num'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span>
+math_sub_y <span class="token operator">=</span> login_day<span class="token punctuation">[</span><span class="token string">'math_subscribe_num'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span>
+add_friend_y <span class="token operator">=</span> login_day<span class="token punctuation">[</span><span class="token string">'add_friend'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span>
+add_group_y <span class="token operator">=</span> login_day<span class="token punctuation">[</span><span class="token string">'add_group'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span>
+study_num_y <span class="token operator">=</span> login_day<span class="token punctuation">[</span><span class="token string">'study_num'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+chinese_sub_pair <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token keyword">for</span> z <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>pie_data_x<span class="token punctuation">,</span> chinese_sub_y<span class="token punctuation">)</span><span class="token punctuation">]</span>
+math_sub_pair <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token keyword">for</span> z <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>pie_data_x<span class="token punctuation">,</span> math_sub_y<span class="token punctuation">)</span><span class="token punctuation">]</span>
+add_friend_pair <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token keyword">for</span> z <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>pie_data_x<span class="token punctuation">,</span> add_friend_y<span class="token punctuation">)</span><span class="token punctuation">]</span>
+add_group_pair <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token keyword">for</span> z <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>pie_data_x<span class="token punctuation">,</span> add_group_y<span class="token punctuation">)</span><span class="token punctuation">]</span>
+study_num_pair <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token keyword">for</span> z <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>pie_data_x<span class="token punctuation">,</span> study_num_y<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+fn <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+    function(params) &#123;
+        if(params.name == '否')
+            return '\\n\\n\\n' + params.name + ' : ' + params.value;
+        return params.name + ' : ' + params.value;
+    &#125;
+    """</span>
+
+sub_pie <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Pie<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"800px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"600px"</span><span class="token punctuation">,</span>
+                                chart_id<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> bg_color<span class="token operator">=</span><span class="token string">'#ADD8E6'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">"关注公众号1"</span><span class="token punctuation">,</span>
+        data_pair<span class="token operator">=</span>chinese_sub_pair<span class="token punctuation">,</span>
+        center<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"20%"</span><span class="token punctuation">,</span> <span class="token string">"30%"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        radius<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>formatter<span class="token operator">=</span>JsCode<span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token string">"center"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">"关注公众号2"</span><span class="token punctuation">,</span>
+        data_pair<span class="token operator">=</span>math_sub_pair<span class="token punctuation">,</span>
+        center<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"50%"</span><span class="token punctuation">,</span> <span class="token string">"30%"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        radius<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>formatter<span class="token operator">=</span>JsCode<span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token string">"center"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">"添加销售好友"</span><span class="token punctuation">,</span>
+        data_pair<span class="token operator">=</span>add_friend_pair<span class="token punctuation">,</span>
+        center<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"80%"</span><span class="token punctuation">,</span> <span class="token string">"30%"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        radius<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>formatter<span class="token operator">=</span>JsCode<span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token string">"center"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">"进群"</span><span class="token punctuation">,</span>
+        data_pair<span class="token operator">=</span>add_group_pair<span class="token punctuation">,</span>
+        center<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"35%"</span><span class="token punctuation">,</span> <span class="token string">"70%"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        radius<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>formatter<span class="token operator">=</span>JsCode<span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token string">"center"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">"重复学习"</span><span class="token punctuation">,</span>
+        data_pair<span class="token operator">=</span>study_num_pair<span class="token punctuation">,</span>
+        center<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"65%"</span><span class="token punctuation">,</span> <span class="token string">"70%"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        radius<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>formatter<span class="token operator">=</span>JsCode<span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token string">"center"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>title_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>TitleOpts<span class="token punctuation">(</span><span class="token string">"饼图"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<h2 id="购买课程"><a href="#购买课程" class="headerlink" title="购买课程"></a>购买课程</h2><p>最终购买下单的用户比例，选择用水球图来展现。</p>
+<iframe frameborder="0" width="800px" height="600px" src="/iframe_html/ccbca60a/purchase_liquid.html"></iframe>
+
+<pre class="language-python" data-language="python"><code class="language-python">purchase_liquid <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Liquid<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"800px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"600px"</span><span class="token punctuation">,</span>
+                                   chart_id<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> bg_color<span class="token operator">=</span><span class="token string">'#ADD8E6'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>
+        <span class="token string">"购买率"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token builtin">round</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token operator">/</span><span class="token builtin">len</span><span class="token punctuation">(</span>user_info<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        label_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LabelOpts<span class="token punctuation">(</span>
+            formatter<span class="token operator">=</span>JsCode<span class="token punctuation">(</span><span class="token string">"function(param) &#123;return (Math.floor(param.value * 10000) / 100) + '%';&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            position<span class="token operator">=</span><span class="token string">"inside"</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>title_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>TitleOpts<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">"购买课程比例"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<h1 id="模型建立与求解"><a href="#模型建立与求解" class="headerlink" title="模型建立与求解"></a>模型建立与求解</h1><h2 id="1-数据处理-特征选择"><a href="#1-数据处理-特征选择" class="headerlink" title="1.数据处理(特征选择)"></a>1.数据处理(特征选择)</h2><p>数据涉及到多个表，为便于模型的处理，要将字段根据用户ID(user_id)整合到一个DataFrame数据集中。</p>
+<p>判断用户是否会下单购买，这是一个二分类的问题，可以选择逻辑回归、决策树、支持向量机等方法，这里我就是选用这几种模型进行求解。构建模型前，还需要进行特征的选择或者说筛选，目的是剔除对模型分类用处不大的特征，这样能够提高模型的效率及准确性。</p>
+<p>初步可以直接剔除无法量化的字符型字段及时间类型字段，从之前的数据预处理阶段还能发现许多字段分布几乎只有一种值，比如APP是否激活等，这样的特征也需要去除。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># user_info, login_day, visit_info</span>
+<span class="token comment"># 将数据字段进行整合处理，并筛选用于离散选择模型的特征</span>
+ul_merge <span class="token operator">=</span> pd<span class="token punctuation">.</span>merge<span class="token punctuation">(</span>user_info<span class="token punctuation">,</span> login_day<span class="token punctuation">,</span> on<span class="token operator">=</span><span class="token string">'user_id'</span><span class="token punctuation">)</span>   <span class="token comment"># 合并数据表</span>
+all_fields <span class="token operator">=</span> pd<span class="token punctuation">.</span>merge<span class="token punctuation">(</span>ul_merge<span class="token punctuation">,</span> visit_info<span class="token punctuation">,</span> on<span class="token operator">=</span><span class="token string">'user_id'</span><span class="token punctuation">)</span>
+all_fields<span class="token punctuation">[</span><span class="token string">'result'</span><span class="token punctuation">]</span> <span class="token operator">=</span> all_fields<span class="token punctuation">[</span><span class="token string">'user_id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">apply</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token keyword">if</span> x <span class="token keyword">in</span> result<span class="token punctuation">[</span><span class="token string">'user_id'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>values <span class="token keyword">else</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+drop_fea <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'first_order_time'</span><span class="token punctuation">,</span> <span class="token string">'city_num'</span><span class="token punctuation">,</span> <span class="token string">'platform_num'</span><span class="token punctuation">,</span> <span class="token string">'model_num'</span><span class="token punctuation">,</span>
+            <span class="token string">'app_num'</span><span class="token punctuation">,</span> <span class="token string">'add_friend'</span><span class="token punctuation">,</span> <span class="token string">'add_group'</span><span class="token punctuation">,</span> <span class="token string">'launch_time'</span><span class="token punctuation">]</span>
+<span class="token comment"># 去除非数值型的字段，app_num字段值全为1，对模型的拟合没有多大用处，也去除</span>
+all_fields<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>drop_fea<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></code></pre>
+<p>其次也不难发现有的字段有比较高的相关性，比如学习课节数和完成课节数，这两者的相关系数竟达到了0.9，所以也需要去除其一。完整的筛选出所有字段中相关系数大于0.8的，进行手动的筛选，列出需要去除的字段drop_fea2。</p>
+<pre class="language-python" data-language="python"><code class="language-python">fields_corrs <span class="token operator">=</span> all_fields<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>corr<span class="token punctuation">(</span><span class="token punctuation">)</span>
+large_corr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>fields_corrs<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> fields_corrs<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> fields_corrs<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0.8</span><span class="token punctuation">:</span>  <span class="token comment"># 找出相关性大于0.8的字段</span>
+            large_corr<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>fields_corrs<span class="token punctuation">.</span>index<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> fields_corrs<span class="token punctuation">.</span>columns<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> fields_corrs<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+drop_fea2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'main_home2'</span><span class="token punctuation">,</span> <span class="token string">'main_mime'</span><span class="token punctuation">,</span> <span class="token string">'click_buy'</span><span class="token punctuation">,</span> <span class="token string">'first_order_price'</span><span class="token punctuation">]</span>
+all_fields<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>drop_fea2<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></code></pre>
+<p>字段筛选完毕，之后就要将数据分割为训练集和测试集，使用的是<code>sklearn.model_selection</code>中的<code>train_test_split</code>方法.</p>
+<pre class="language-python" data-language="python"><code class="language-python">x_train<span class="token punctuation">,</span> x_test<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> y_test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>all_fields<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                                    all_fields<span class="token punctuation">[</span><span class="token string">'result'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                                    test_size<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">,</span>
+                                                    stratify<span class="token operator">=</span>all_fields<span class="token punctuation">[</span><span class="token string">'result'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                                    random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span></code></pre>
+<h2 id="2-预备知识"><a href="#2-预备知识" class="headerlink" title="2.预备知识"></a>2.预备知识</h2><ol>
+<li><p>混淆矩阵</p>
+<p>在二分类问题中，把实际的结果和预测的结果整理成表格(矩阵)可以比较直观的看到分类表现，类似于下表。</p>
+<table style="border-collapse:collapse;border-color:#aabcfe;border-spacing:0" class="tg"><thead><tr><th style="background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:0px;color:#039;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal" colspan="2" rowspan="2"></th><th style="background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:0px;color:#039;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal" colspan="2">实际表现</th></tr><tr><th style="background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:0px;color:#039;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">1</th><th style="background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:0px;color:#039;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">0</th></tr></thead><tbody><tr><td style="background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal" rowspan="2">预测表现</td><td style="background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">1</td><td style="background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">TP</td><td style="background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">FP</td></tr><tr><td style="background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">0</td><td style="background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">FN</td><td style="background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal">TN</td></tr></tbody></table>
+
+<p>其中字母的含义可以联想对应的英语单词：T(True)、F(False)、P(Positive)、N(Negative)。</p>
+<p>这种规律也很好记忆，先看预测表现，预测为正例则为P(Positive)，否则为N(Negative)，再看实际表现与预测表现是否一样，一样则预测正确为T(True),否则为F(False)。</p>
+</li>
+<li><p>准确率</p>
+<p>准确率表示预测正确样本个数占总样本的比例，按上面公式写就是：</p>
+<script type="math/tex; mode=display">
+Accuracy=\frac{TP+TN}{TP+FP+FN+TN}</script><p>在机器学习的分类问题中，直接用准确率判断模型的好坏并不总是合适的，要考虑一个样本平衡的问题。</p>
+<p>举例说明：如果在一个总样本中，正样本占90%，负样本占10%，这时样本是的占比是不平衡的。在这种情况下，直接把全部样本都预测为正样本都能有90%的准确率，但明显这样分类是不合适的。在这个例子中样本极不平衡，用准确率衡量分类模型性能就没有什么说服力。</p>
+</li>
+<li><p>精准率</p>
+<p>精准率(Precision)又叫查准率，不同于准确率针对的是总样本，精准率的含义是在所有被预测为正的样本中实际为正的样本的比例。</p>
+<script type="math/tex; mode=display">
+Precision=\frac{TP}{TP+FP}</script><p>和准确率对比是很容易发现区别的，精准率代表对正样本结果中的预测准确程度。</p>
+</li>
+<li><p>召回率</p>
+<p>召回率(Recall)又叫查全率，含义是在实际为正的样本中被预测为正样本的比例。</p>
+<script type="math/tex; mode=display">
+Recall=\frac{TP}{TP+FN}</script><p>召回率是覆盖面的度量，度量有多少实际正例被预测为正例。</p>
+</li>
+<li><p>F1分数</p>
+<p>精准率和召回率通常一高一低，而我们则希望让两者都尽可能高，不至于是极端。而F1分数(F1-score)是一个指标，同时考虑精准率和召回率，让二者都比较高。</p>
+<script type="math/tex; mode=display">
+F1=\frac{2\cdot Precision \cdot Recall}{Precision+Recall}</script><p>F1-Score越高，可以说明模型越稳健。</p>
+</li>
+<li><p>灵敏度、特异度、真正率、假正率</p>
+<script type="math/tex; mode=display">
+灵敏度(Sensitivity)=\frac{TP}{TP+FN}
+\\
+特异度(Specificity)=\frac{TN}{FP+TN}</script><p>这里发现灵敏度和特异度公式是一样的，只是名字不同。</p>
+<script type="math/tex; mode=display">
+真正率(TPR)=灵敏度=\frac{TP}{TP+FN}
+\\
+假正率(FPR)=1-特异度=\frac{FP}{FP+TN}</script><p>这里发现TPR和FPR分别是基于实际表现出发的，也就是说它们分别在实际的正样本和负样本中来观察相关概率问题。正因为如此，无论样本是否平衡，都不会被影响，而ROC/AUC指标也就是用TPR和FPR来衡量的。</p>
+</li>
+<li><p>ROC曲线与AUC值</p>
+<p>ROC曲线是基于<strong>混淆矩阵</strong>得出的，横轴为假正率，纵轴为真正率。对于分类器，它输出的是判别样本为各个类别的概率，那么判别样本为某一类就要定义一个<strong>阈值</strong>，大于该阈值归为正类等，这个阈值并不是直接随意定义，要找一个最好的阈值让分类的效果最好，于是遍历预测的概率中的所有阈值，得到对应阈值下的真正率和假正率，就可以得到一系列这样的值，画出来就得到了ROC曲线。</p>
+<blockquote>
+<p>FPR表示模型虚报的响应程度，而TPR表示模型预测响应的覆盖程度。我们所希望的当然是：虚报的越少越好，覆盖的越多越好。所以总结一下就是TPR越高，同时FPR越低（即ROC曲线越陡），那么模型的性能就越好。</p>
+</blockquote>
+<p>而AUC值表示的是ROC曲线下面积。作为对比的是通常画ROC曲线时还会画<code>y=x</code>这条直线(连接对角线)，它的面积为0.5，表示的是随机效果。</p>
+<blockquote>
+<p>AUC的一般判断标准：</p>
+<p>0.5 ~ 0.7  ：效果较低</p>
+<p>0.7 ~ 0.85 ：效果一般</p>
+<p>0.85 ~ 0.95：效果很好</p>
+<p>0.95 ~ 1   ：效果非常好</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="2-Logistic"><a href="#2-Logistic" class="headerlink" title="2.Logistic"></a>2.Logistic</h2><details class="toggle" ><summary class="toggle-button" style="">Logistic</summary><div class="toggle-content"><p>使用sklearn中线性模型中的LogisticRegression构建逻辑回归模型。模型的求解算法选择’newton-cg’，原因是线性求解器’liblinear’适合于较小数据集，这里样本量达到了13万，所以选择适合大数据集的牛顿法来作为求解器，分类的效果也是不错的。</p>
+<pre class="language-python" data-language="python"><code class="language-python">logit_clf <span class="token operator">=</span> LogisticRegression<span class="token punctuation">(</span>solver<span class="token operator">=</span><span class="token string">'newton-cg'</span><span class="token punctuation">)</span>  <span class="token comment"># 使用牛顿法求解器</span>
+logit_clf<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>  <span class="token comment"># 拟合训练集</span>
+
+logit_prob <span class="token operator">=</span> logit_clf<span class="token punctuation">.</span>predict_proba<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>  <span class="token comment"># 预测测试集类别的概率</span>
+logit_pred <span class="token operator">=</span> logit_clf<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>       <span class="token comment"># 预测测试集的类别</span>
+
+logit_fpr<span class="token punctuation">,</span> logit_tpr<span class="token punctuation">,</span> _ <span class="token operator">=</span> roc_curve<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> logit_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 得到真假阳性率数据</span>
+logit_area <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>roc_auc_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> logit_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment"># AUC值，保留3位小数</span>
+logit_precision<span class="token punctuation">,</span> logit_recall<span class="token punctuation">,</span> _ <span class="token operator">=</span> precision_recall_curve<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> logit_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 得到准确率和召回率的数据</span>
+
+logit_acc <span class="token operator">=</span> logit_clf<span class="token punctuation">.</span>score<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span>  <span class="token comment"># 返回的是测试集预测类别与实际类别的准确度</span></code></pre>
+<p>可视化代码：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 对模型进行评估与可视化</span>
+logit_roc_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Line<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span>logit_fpr<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string-interpolation"><span class="token string">f'ROC曲线(AUC值</span><span class="token interpolation"><span class="token punctuation">&#123;</span>logit_area<span class="token punctuation">&#125;</span></span><span class="token string">)'</span></span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>logit_tpr<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        is_smooth<span class="token operator">=</span><span class="token boolean">True</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">'y=x'</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>logit_fpr<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        xaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"假阳性率(FPR)"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        yaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"真阳性率(TPR)"</span><span class="token punctuation">,</span>
+            splitline_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>SplitLineOpts<span class="token punctuation">(</span>is_show<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            is_scale<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        legend_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LegendOpts<span class="token punctuation">(</span>pos_left<span class="token operator">=</span><span class="token string">"20%"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+logit_pr_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Line<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span>logit_recall<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">'PR曲线'</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>logit_precision<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        is_smooth<span class="token operator">=</span><span class="token boolean">True</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        xaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"召回率(Recall)"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        yaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"准确率(Precision)"</span><span class="token punctuation">,</span>
+            splitline_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>SplitLineOpts<span class="token punctuation">(</span>is_show<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            is_scale<span class="token operator">=</span><span class="token boolean">True</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        legend_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LegendOpts<span class="token punctuation">(</span>pos_right<span class="token operator">=</span><span class="token string">"20%"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># roc_pr_line = roc_line.overlap(pr_line)</span>
+logit_roc_pr_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Grid<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"1000px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"500px"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>logit_roc_line<span class="token punctuation">,</span> grid_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>GridOpts<span class="token punctuation">(</span>pos_right<span class="token operator">=</span><span class="token string">"60%"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>logit_pr_line<span class="token punctuation">,</span> grid_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>GridOpts<span class="token punctuation">(</span>pos_left<span class="token operator">=</span><span class="token string">"60%"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<p><img src="https://img.whfree.top//image-20211006195339033.png" alt="image-20211006195339033"></p>
+</div></details>
+<h2 id="3-决策树"><a href="#3-决策树" class="headerlink" title="3.决策树"></a>3.决策树</h2><details class="toggle" ><summary class="toggle-button" style="">决策树</summary><div class="toggle-content"><p>使用决策树进行分类的优点是易于解释、方便可视化等优点，当然缺点也明显，容易过拟合等。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 采用决策树模型进行分类</span>
+<span class="token comment"># 使用信息熵作为划分标准，最大深度为5，对决策树进行训练</span>
+tree_clf <span class="token operator">=</span> tree<span class="token punctuation">.</span>DecisionTreeClassifier<span class="token punctuation">(</span>criterion<span class="token operator">=</span><span class="token string">'entropy'</span><span class="token punctuation">,</span>
+                                       max_depth<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+tree_fit <span class="token operator">=</span> tree_clf<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>  <span class="token comment"># 拟合训练集</span>
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"tree.dot"</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>  <span class="token comment"># 保存决策树的结果，后续进行可视化</span>
+    f <span class="token operator">=</span> tree<span class="token punctuation">.</span>export_graphviz<span class="token punctuation">(</span>tree_fit<span class="token punctuation">,</span> out_file<span class="token operator">=</span>f<span class="token punctuation">,</span>
+                             feature_names<span class="token operator">=</span>x_train<span class="token punctuation">.</span>columns<span class="token punctuation">,</span>
+                             class_names<span class="token operator">=</span><span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">(</span>cl<span class="token punctuation">)</span> <span class="token keyword">for</span> cl <span class="token keyword">in</span> tree_fit<span class="token punctuation">.</span>classes_<span class="token punctuation">]</span><span class="token punctuation">,</span>
+                             filled<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> rounded<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                             special_characters<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"tree.dot"</span><span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
+    dot_code <span class="token operator">=</span> fp<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    graph <span class="token operator">=</span> pydotplus<span class="token punctuation">.</span>graph_from_dot_data<span class="token punctuation">(</span>dot_code<span class="token punctuation">)</span>
+    graph<span class="token punctuation">.</span>write_pdf<span class="token punctuation">(</span><span class="token string">"tree.pdf"</span><span class="token punctuation">)</span>  <span class="token comment"># pydotplus对决策树的代码进行可视化，生成PDF文件</span>
+
+tree_pred <span class="token operator">=</span> tree_clf<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>   <span class="token comment"># 预测测试集类别</span>
+tree_prob <span class="token operator">=</span> tree_clf<span class="token punctuation">.</span>predict_proba<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>  <span class="token comment"># 测试集类别的概率</span>
+
+tree_fpr<span class="token punctuation">,</span> tree_tpr<span class="token punctuation">,</span> _ <span class="token operator">=</span> roc_curve<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> tree_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 得到真假阳性率数据</span>
+tree_area <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>roc_auc_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> tree_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment"># AUC值，保留3位小数</span>
+tree_precision<span class="token punctuation">,</span> tree_recall<span class="token punctuation">,</span> tree_thresholds <span class="token operator">=</span> precision_recall_curve<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> tree_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 得到准确率和召回率的数据</span>
+
+tree_acc <span class="token operator">=</span> tree_clf<span class="token punctuation">.</span>score<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span>  <span class="token comment"># 模型精度</span></code></pre>
+<p>可视化代码：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 对模型进行评估与可视化</span>
+tree_roc_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Line<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span>tree_fpr<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string-interpolation"><span class="token string">f'ROC曲线(AUC值=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>tree_area<span class="token punctuation">&#125;</span></span><span class="token string">)'</span></span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>tree_tpr<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        is_smooth<span class="token operator">=</span><span class="token boolean">True</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">'y=x'</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>tree_fpr<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        xaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"假阳性率(FPR)"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        yaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"真阳性率(TPR)"</span><span class="token punctuation">,</span>
+            splitline_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>SplitLineOpts<span class="token punctuation">(</span>is_show<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            is_scale<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        legend_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LegendOpts<span class="token punctuation">(</span>pos_left<span class="token operator">=</span><span class="token string">"20%"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+tree_pr_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Line<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span>tree_recall<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">'PR曲线'</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>tree_precision<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        is_smooth<span class="token operator">=</span><span class="token boolean">True</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        xaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"召回率(Recall)"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        yaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"准确率(Precision)"</span><span class="token punctuation">,</span>
+            splitline_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>SplitLineOpts<span class="token punctuation">(</span>is_show<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            is_scale<span class="token operator">=</span><span class="token boolean">True</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        legend_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LegendOpts<span class="token punctuation">(</span>pos_right<span class="token operator">=</span><span class="token string">"20%"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+
+tree_roc_pr_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Grid<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"1000px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"500px"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>tree_roc_line<span class="token punctuation">,</span> grid_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>GridOpts<span class="token punctuation">(</span>pos_right<span class="token operator">=</span><span class="token string">"60%"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>tree_pr_line<span class="token punctuation">,</span> grid_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>GridOpts<span class="token punctuation">(</span>pos_left<span class="token operator">=</span><span class="token string">"60%"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<p><img src="https://img.whfree.top//image-20211006201350186.png" alt="image-20211006201350186"></p>
+<p>其次，还能够得到决策树分类中特征的重要性，值越大表示对分类的效果越好，越能区分类别。得到如下图：</p>
+<iframe frameborder="0" width="800px" height="600px" src="/iframe_html/ccbca60a/feature_importance.html"></iframe>
+
+<p>从上面也能得出一些小小的结论：领券对用户是否下单有着非常重要的影响。</p>
+</div></details>
+<h2 id="4-支持向量机"><a href="#4-支持向量机" class="headerlink" title="4.支持向量机"></a>4.支持向量机</h2><details class="toggle" ><summary class="toggle-button" style="">支持向量机</summary><div class="toggle-content"><p>sklearn中的svm模块有SVC和LinearSVC两种模型，在选择的时候要考虑它们的区别：</p>
+<blockquote><p><strong>LinearSVC</strong></p>
+<ol>
+<li><p>基于liblinear库实现</p>
+</li>
+<li><p>有多种惩罚参数和损失函数可供选择</p>
+</li>
+<li><p>训练集实例数量大（大于1万）时也可以很好地进行归一化</p>
+</li>
+<li><p>既支持稠密输入矩阵也支持稀疏输入矩阵</p>
+</li>
+<li><p>多分类问题采用one-vs-rest方法实现</p>
+</li>
+</ol>
+<p><strong>SVC</strong></p>
+<ol>
+<li><p>基于libsvm库实现</p>
+</li>
+<li><p>训练时间复杂度为<script type="math/tex">o(n^2)</script></p>
+</li>
+<li><p>训练集实例数量大（大于1万）时很难进行归一化</p>
+</li>
+<li><p>多分类问题采用one-vs-rest方法实现</p>
+</li>
+</ol>
+<footer><strong>baiziyu</strong><cite><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57162092">sklearn.svm.LinearSVC与sklearn.svm.SVC区别</a></cite></footer></blockquote>
+
+<p>很明显对于超过10万的样本量应当选择LinearSVC会更合适。同时也尝试了二者的效果，发现LinearSVC的准确度比SVC要高一些，并且训练时间也远少于SVC(8.11s VS 15min 36s)。</p>
+<p>LinearSVC实现代码如下：</p>
+<pre class="language-python" data-language="python"><code class="language-python">lsvm_clf <span class="token operator">=</span> LinearSVC<span class="token punctuation">(</span>dual<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment"># 样本量大于特征数，将对偶项设为False</span>
+lsvm_clf<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>   <span class="token comment"># 拟合训练集</span>
+
+lsvm_pred <span class="token operator">=</span> lsvm_clf<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>  <span class="token comment"># 预测测试集</span>
+lsvm_prob <span class="token operator">=</span> lsvm_clf<span class="token punctuation">.</span>_predict_proba_lr<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>  <span class="token comment"># 测试集类别的概率</span>
+
+lsvm_fpr<span class="token punctuation">,</span> lsvm_tpr<span class="token punctuation">,</span> _ <span class="token operator">=</span> roc_curve<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> lsvm_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 得到真假阳性率数据</span>
+lsvm_area <span class="token operator">=</span> <span class="token builtin">round</span><span class="token punctuation">(</span>roc_auc_score<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> lsvm_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment"># AUC值，保留3为小数</span>
+lsvm_precision<span class="token punctuation">,</span> lsvm_recall<span class="token punctuation">,</span> _ <span class="token operator">=</span> precision_recall_curve<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> lsvm_prob<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 准确率与回归率</span>
+
+lsvm_acc <span class="token operator">=</span> lsvm_clf<span class="token punctuation">.</span>score<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span>  <span class="token comment"># 模型精度</span></code></pre>
+<p>可视化代码：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 对模型进行评估与可视化</span>
+lsvm_roc_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Line<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span>lsvm_fpr<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string-interpolation"><span class="token string">f'ROC曲线(AUC值=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>lsvm_area<span class="token punctuation">&#125;</span></span><span class="token string">)'</span></span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>lsvm_tpr<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        is_smooth<span class="token operator">=</span><span class="token boolean">True</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">'y=x'</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>lsvm_fpr<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        xaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"假阳性率(FPR)"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        yaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"真阳性率(TPR)"</span><span class="token punctuation">,</span>
+            splitline_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>SplitLineOpts<span class="token punctuation">(</span>is_show<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            is_scale<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        legend_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LegendOpts<span class="token punctuation">(</span>pos_left<span class="token operator">=</span><span class="token string">"20%"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+lsvm_pr_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Line<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_xaxis<span class="token punctuation">(</span>lsvm_recall<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add_yaxis<span class="token punctuation">(</span>
+        series_name<span class="token operator">=</span><span class="token string">'PR曲线'</span><span class="token punctuation">,</span>
+        y_axis<span class="token operator">=</span>lsvm_precision<span class="token punctuation">,</span>
+        is_symbol_show<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        is_smooth<span class="token operator">=</span><span class="token boolean">True</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>set_global_opts<span class="token punctuation">(</span>
+        xaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"召回率(Recall)"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        yaxis_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>AxisOpts<span class="token punctuation">(</span>
+            name<span class="token operator">=</span><span class="token string">"准确率(Precision)"</span><span class="token punctuation">,</span>
+            splitline_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>SplitLineOpts<span class="token punctuation">(</span>is_show<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            is_scale<span class="token operator">=</span><span class="token boolean">True</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        legend_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>LegendOpts<span class="token punctuation">(</span>pos_right<span class="token operator">=</span><span class="token string">"20%"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+
+lsvm_roc_pr_line <span class="token operator">=</span> <span class="token punctuation">(</span>
+    Grid<span class="token punctuation">(</span>init_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>InitOpts<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token string">"1000px"</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token string">"500px"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>lsvm_roc_line<span class="token punctuation">,</span> grid_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>GridOpts<span class="token punctuation">(</span>pos_right<span class="token operator">=</span><span class="token string">"60%"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>add<span class="token punctuation">(</span>lsvm_pr_line<span class="token punctuation">,</span> grid_opts<span class="token operator">=</span>opts<span class="token punctuation">.</span>GridOpts<span class="token punctuation">(</span>pos_left<span class="token operator">=</span><span class="token string">"60%"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span></code></pre>
+<p><img src="https://img.whfree.top//image-20211006201723027.png" alt="image-20211006201723027"></p>
+</div></details>
+<h2 id="5-对比与结论"><a href="#5-对比与结论" class="headerlink" title="5.对比与结论"></a>5.对比与结论</h2><p>上述3个模型做完之后，进行一个效果对比，看哪个模型对分类的效果是最好的。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Logit</th>
+<th>Tree</th>
+<th>SVM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>准确度</strong></td>
+<td>0.978</td>
+<td>0.98</td>
+<td>0.971</td>
+</tr>
+<tr>
+<td><strong>精准率</strong></td>
+<td>0.816</td>
+<td>0.74</td>
+<td>0.831</td>
+</tr>
+<tr>
+<td><strong>召回率</strong></td>
+<td>0.46</td>
+<td>0.664</td>
+<td>0.185</td>
+</tr>
+<tr>
+<td><strong>F1-Score</strong></td>
+<td>0.589</td>
+<td>0.7</td>
+<td>0.303</td>
+</tr>
+<tr>
+<td><strong>ROC-AUC</strong></td>
+<td>0.97</td>
+<td>0.976</td>
+<td>0.952</td>
+</tr>
+<tr>
+<td><strong>PR-AUC</strong></td>
+<td>0.656</td>
+<td>0.694</td>
+<td>0.577</td>
+</tr>
+<tr>
+<td><strong>拟合时间</strong></td>
+<td>13.6s</td>
+<td>576ms</td>
+<td>8.54s</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>为了更直观比较，画了个柱状图来对比。</p>
+<iframe frameborder="0" width="800px" height="600px" src="/iframe_html/ccbca60a/model_compare_1008.html"></iframe>
+
+<p>上表中的AUC两栏是不同评估指标，分别是ROC曲线和PR曲线中曲线以下部分的面积，代表了模型的分类表现，将前面三个模型各自的曲线整合到一起更容易在模型之间比较。</p>
+<p><img src="https://img.whfree.top//roc_pr_fig.png" alt=""></p>
+<p>查看一些文章，我发现在不同情况下这两个指标应当选择性的进行对比。</p>
+<blockquote><ol>
+<li>ROC曲线由于兼顾正例与负例，所以适用于评估分类器的整体性能，相比而言PR曲线完全聚焦于正例。</li>
+<li>如果有多份数据且存在<strong>不同</strong>的类别分布，比如信用卡欺诈问题中每个月正例和负例的比例可能都不相同，这时候如果只想单纯地比较分类器的性能且剔除类别分布改变的影响，则ROC曲线比较适合，因为类别分布改变可能使得PR曲线发生变化时好时坏，这种时候难以进行模型比较；反之，如果想测试不同类别分布下对分类器的性能的影响，则PR曲线比较适合。</li>
+<li>如果想要评估在<strong>相同</strong>的类别分布下正例的预测情况，则宜选PR曲线。</li>
+<li>类别不平衡问题中，ROC曲线通常会给出一个乐观的效果估计，所以大部分时候还是PR曲线更好。</li>
+<li>最后可以根据具体的应用，在曲线上找到最优的点，得到相对应的precision，recall，f1 score等指标，去调整模型的阈值，从而得到一个符合具体应用的模型。</li>
+</ol>
+<footer><strong>wdmad</strong><cite><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34655990">机器学习之类别不平衡问题 (2) —— ROC和PR曲线</a></cite></footer></blockquote>
+<p>不过在这里比较明显的是决策树的表现效果是最好的，准确度达0.98，拟合时间也远低于其他两个模型，虽然精准率稍低于其他两个模型，但结合召回率看，决策树模型的F1分数是最高的，因此有理由认为决策树分类器是较于其他两个分类器效果更佳。</p>
+<h1 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h1><p>结合前面构建的模型，采用决策树分类器对用户是否会下单进行预测的效果最佳。从用户的所有行为数据中，筛选掉一些对分类帮助不大的数据，构建决策树分类器，可以较为准确的预测用户的下单概率。其中领券数量这一数据项最为突出，其相对于其他数据项更能帮助区分用户是否下单，可知优惠券对用户下单的影响之大，其之后的几个数据项也对分类较为重要。</p>
+<p>因此，公司首先可以针对产品设计优惠活动，形式不限，激发用户的购买心理；其次还需要增加用户的留存率，具体提现在APP功能的优化、用户需求的满足，尽可能的留住活跃用户；最后还需回归产品本身，可以收集用户反馈，完善产品不足之处。这些可以根据构建的决策树分类器中特征的重要性进行对症下药，精准的提升用户下单概率。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a><strong>参考文章</strong></h1><ol>
+<li>Jack Cui，<a target="_blank" rel="noopener" href="https://cuijiahua.com/blog/2017/11/ml_9_svm_2.html">支持向量机实战篇之再撕非线性SVM</a></li>
+<li>wdmad，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34655990">机器学习之类别不平衡问题 (2) —— ROC和PR曲线</a></li>
+<li>nana-li，<a target="_blank" rel="noopener" href="https://blog.csdn.net/quiet_girl/article/details/70830796">机器学习：准确率(Precision)、召回率(Recall)、F值(F-Measure)、ROC曲线、PR曲线</a></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://whfree.top">wwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://whfree.top/posts/ccbca60a/">https://whfree.top/posts/ccbca60a/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whfree.top" target="_blank">Free</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></div><div class="post_share"><div class="social-share" data-image="https://img.whfree.top/post_cover/user_date_analysis_ccbca60a.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/02345chm/" title="数据挖掘与机器学习总结"><img class="cover" src="https://img.whfree.top/post_cover/data_ming_02345chm.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据挖掘与机器学习总结</div></div></a></div><div class="next-post pull-right"><a href="/posts/9b708780/" title="Butterfly标签外挂指南"><img class="cover" src="https://img.whfree.top/post_cover/hqdefault_hexo_tag_plugins_9b708780.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Butterfly标签外挂指南</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/029303py/" title="Python爬虫技术——深入理解原理、技术与开发"><img class="cover" src="https://img.whfree.top/post_cover/python_crawler_029303py.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-04</div><div class="title">Python爬虫技术——深入理解原理、技术与开发</div></div></a></div><div><a href="/posts/03s4j9y2/" title="Python异步编程入门"><img class="cover" src="https://img.whfree.top/post_cover/python_asyncio_start_03s4j9y2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-04</div><div class="title">Python异步编程入门</div></div></a></div><div><a href="/posts/b8f11782/" title="sklearn常用模型使用小结"><img class="cover" src="https://img.whfree.top/post_cover/scikit_learn_logo_small_b8f11782.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-03</div><div class="title">sklearn常用模型使用小结</div></div></a></div><div><a href="/posts/1ef2gf23/" title="将Python包发布到PyPI"><img class="cover" src="https://img.whfree.top/post_cover/python_package_index_1ef2gf23.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-04</div><div class="title">将Python包发布到PyPI</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wwh</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/freedomgod" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Python与数据分析</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">数据可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%8E%E5%B8%82"><span class="toc-number">2.1.</span> <span class="toc-text">城市</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B4%E9%BE%84"><span class="toc-number">2.2.</span> <span class="toc-text">年龄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E5%8D%95%E9%87%91%E9%A2%9D"><span class="toc-number">2.3.</span> <span class="toc-text">下单金额</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A5%BC%E5%9B%BE"><span class="toc-number">2.4.</span> <span class="toc-text">饼图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AD%E4%B9%B0%E8%AF%BE%E7%A8%8B"><span class="toc-number">2.5.</span> <span class="toc-text">购买课程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%B1%82%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">模型建立与求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="toc-number">3.1.</span> <span class="toc-text">1.数据处理(特征选择)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="toc-number">3.2.</span> <span class="toc-text">2.预备知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Logistic"><span class="toc-number">3.3.</span> <span class="toc-text">2.Logistic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-number">3.4.</span> <span class="toc-text">3.决策树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="toc-number">3.5.</span> <span class="toc-text">4.支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AF%B9%E6%AF%94%E4%B8%8E%E7%BB%93%E8%AE%BA"><span class="toc-number">3.6.</span> <span class="toc-text">5.对比与结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-number">4.</span> <span class="toc-text">总结与建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">参考文章</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By wwh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="https://img.whfree.top/icp.png"><span>赣 ICP 备 2021007374 号 - 1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.whfree.top/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="/js/weather.js"></script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

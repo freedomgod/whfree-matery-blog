@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>素数伴侣——匈牙利算法 | Free</title><meta name="author" content="wwh"><meta name="copyright" content="wwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="牛客编程题——素数伴侣">
+<meta property="og:type" content="article">
+<meta property="og:title" content="素数伴侣——匈牙利算法">
+<meta property="og:url" content="https://whfree.top/posts/cd349d9e/index.html">
+<meta property="og:site_name" content="Free">
+<meta property="og:description" content="牛客编程题——素数伴侣">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.whfree.top/post_cover/hungarian_algorithm_cd349d9e.jpg">
+<meta property="article:published_time" content="2022-03-05T07:23:00.000Z">
+<meta property="article:modified_time" content="2023-03-27T14:58:36.246Z">
+<meta property="article:author" content="wwh">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.whfree.top/post_cover/hungarian_algorithm_cd349d9e.jpg"><link rel="shortcut icon" href="https://img.whfree.top/website_icon/free_man_circle.png"><link rel="canonical" href="https://whfree.top/posts/cd349d9e/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '素数伴侣——匈牙利算法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-27 22:58:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.whfree.top/post_cover/hungarian_algorithm_cd349d9e.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Free"><img class="site-icon" src="https://img.whfree.top/website_icon/free_man_circle.png"/><span class="site-name">Free</span></a></span><div id="he-plugin-simple"></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">素数伴侣——匈牙利算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-05T07:23:00.000Z" title="发表于 2022-03-05 15:23:00">2022-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-27T14:58:36.246Z" title="更新于 2023-03-27 22:58:36">2023-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="素数伴侣——匈牙利算法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info no-icon [原题](https://www.nowcoder.com/practice/b9eae162e02f4f928eac37d7699b352e)描述 flat"><blockquote>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>若两个正整数的和为素数，则这两个正整数称之为“素数伴侣”，如2和5、6和13，它们能应用于通信加密。现在密码学会请你设计一个程序，从已有的 N （ N 为偶数）个正整数中挑选出若干对组成“素数伴侣”，挑选方案多种多样，例如有4个正整数：2，5，6，13，如果将5和6分为一组中只能得到一组“素数伴侣”，而将2和5、6和13编组将得到两组“素数伴侣”，能组成“素数伴侣”最多的方案称为“最佳方案”，当然密码学会希望你寻找出“最佳方案”。</p>
+<p><strong>输入</strong>:</p>
+<p>有一个正偶数 n ，表示待挑选的自然数的个数。后面给出 n 个具体的数字。</p>
+<p><strong>输出</strong>:</p>
+<p>输出一个整数 K ，表示你求得的“最佳方案”组成“素数伴侣”的对数。</p>
+<p>数据范围：$1 \le n \le 100$，输入的数据大小满足 $2 \le val \le 30000$ </p>
+<h3 id="输入描述："><a href="#输入描述：" class="headerlink" title="输入描述："></a>输入描述：</h3><p>1 输入一个正偶数 n<br>2 输入 n 个整数</p>
+<h3 id="输出描述："><a href="#输出描述：" class="headerlink" title="输出描述："></a>输出描述：</h3><p>求得的“最佳方案”组成“素数伴侣”的对数。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>输入：</p>
+<pre class="language-none"><code class="language-none">4
+2 5 6 13
+2
+3 6</code></pre>
+<p>输出：</p>
+<pre class="language-none"><code class="language-none">2
+&gt;0</code></pre>
+</blockquote>
+</div>
+<p>首先容易想到的点：</p>
+<ul>
+<li>要想和为素数，这两个数必定是一奇一偶，不能是同奇或同偶</li>
+<li>组成素数最多的情况，不会超过$min(奇数个数,偶数个数)$。</li>
+</ul>
+<h2 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h2><p>依据上面的想法，我有了两种解法，第一种是在当时做的时候想出来的，虽然能解答出来，但是我并不清楚算法是否完全正确，所以可以忽略；第二种是做完后参考了其他人的解法去实现的，也就是匈牙利算法。</p>
+<p>在这题的正式解法中，一个必须的过程就是判断是否为素数，这个方法相信都比较熟悉了，很快能实现。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">isprime</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 判断x是否为素数</span>
+    t <span class="token operator">=</span> <span class="token number">2</span>
+    <span class="token keyword">while</span> t <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">&lt;=</span> x<span class="token punctuation">:</span>  <span class="token comment"># 和枚举根号x是一样的</span>
+        <span class="token keyword">if</span> x <span class="token operator">%</span> t <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            t <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
+<h3 id="直接实现"><a href="#直接实现" class="headerlink" title="直接实现"></a>直接实现</h3><p>了解到组成素数必须要为一奇一偶后，就可以把输入的数组<code>an</code>分成奇偶两组，然后遍历两个数组，找出每个能组成素数的组合，最后进行配对，尽可能多的产生素数组合。这里可以不用先找素数再匹配，匈牙利算法中是在匹配的过程中判断素数的。这里重要的是匹配的过程，而我是在匹配之前完成了素数的判断。</p>
+<pre class="language-python" data-language="python"><code class="language-python">n <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 获取n</span>
+an <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token comment"># 输入的n个整数</span>
+odd <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> an <span class="token keyword">if</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">]</span>  <span class="token comment"># 把输入的整数分成偶数和奇数</span>
+even <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> an <span class="token keyword">if</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token comment"># 要组成素数，两个数一定不能同为偶数或奇数，必须一奇一偶</span>
+<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>odd<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token builtin">len</span><span class="token punctuation">(</span>even<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    odd<span class="token punctuation">,</span> even <span class="token operator">=</span> even<span class="token punctuation">,</span> odd
+xn <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>  <span class="token comment"># 存储素数组合</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>odd<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    yn <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>  <span class="token comment"># 对应可以组成素数的序号</span>
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>even<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> isprime<span class="token punctuation">(</span>odd<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> even<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 两层循环找出素数组合</span>
+            yn<span class="token punctuation">.</span>append<span class="token punctuation">(</span>j<span class="token punctuation">)</span>  <span class="token comment"># j号元素可以和i位组成素数</span>
+    xn<span class="token punctuation">.</span>append<span class="token punctuation">(</span>yn<span class="token punctuation">)</span></code></pre>
+<p>上面这段代码的处理是生成了素数组合的嵌套列表<code>xn</code>，<code>xn</code>的一维索引表示的是奇数组(偶数组)的序号，<code>xn[i]</code>(<code>yn</code>)也为数组，<code>xn[i][j]</code>(<code>yn[j]</code>)表示的是第<code>i</code>号奇数(偶数)与<code>j</code>号偶数(奇数)可以组成素数。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/freedomgod/picbeds/img/2022-03-05-1101.png" alt=""></p>
+<p>那么关键来了，现在知道了哪几个数可以组成素数，那么怎么匹配他们让组成素数的组数最大？我思考后，想出了以下算法过程，但我并不能科学的证明这样求出来的是最大的组数，仅仅是凭感觉的认为它是最大的组数。</p>
+<pre class="language-none"><code class="language-none">输入嵌套数组xn
+初始化matched集合为空(记录已经匹配的序号)
+while xn非空:
+	生成cnt计数器(对所有yn计数)
+    once &lt;- yn中只出现过一次的元素(cnt &#x3D; 1)
+    if once为空:
+        for xn:
+            if xn[i]为空:
+                弹出xn第i组yn
+                break
+            elif xn[i]长度最小:
+                xn[i][0]添加到matched集合中
+                删除xn中其它地方出现的xn[i][0]
+                弹出xn第i组yn
+                break
+    else:
+        for xn:
+            if xn[i]为空:
+                弹出xn第i组yn
+            elif xn[i]存在元素sp∈once:
+                把sp添加到matched集合中
+                弹出xn第i组yn
+            break
+
+返回 matched的长度</code></pre>
+<p>流程图如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/freedomgod/picbeds/img/2022-03-05-1101-1356.png" alt="流程图"></p>
+<p>整体来说就是在匹配的过程中优先满足可选范围小的数，比如说有一个数只能和另一个数组成素数，那么应该优先满足它，对于其他数还有其他选择。这样不断从<code>xn</code>中剔除只有一个匹配项的数和空集，不断更新计数器，当所有数都有多个选择时，也是优先从长度更小的<code>yn</code>中选择，然后继续循环更新、弹出，最后直至<code>xn</code>为空，<code>matched</code>集合的长度就是最大组合数了。</p>
+<p>我觉得还是太复杂了，兴许就只能看看，重点还是下面的匈牙利算法理解起来简单。</p>
+<h3 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h3><p>了解匈牙利算法，可以到网上搜索下，知乎上有个<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/96229700">匈牙利算法 </a>可以看看。</p>
+<p>类似的将数组分奇偶两组后，循环其中一个数组(哪个都行)，进行匹配，匹配成功<code>group_num</code>数值就会加1。</p>
+<pre class="language-python" data-language="python"><code class="language-python">n <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 获取n</span>
+an <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token comment"># 输入的n个整数</span>
+odds <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> an <span class="token keyword">if</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">]</span>  <span class="token comment"># 把输入的整数分成偶数和奇数</span>
+evens <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> an <span class="token keyword">if</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">]</span>
+m <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>odds<span class="token punctuation">)</span>
+k <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>evens<span class="token punctuation">)</span>
+group_num <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment"># 最终匹配的组数</span>
+matched <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> k  <span class="token comment"># 存储数组中每个数是否被匹配，匹配成功则存储对应的值，否则为0</span>
+<span class="token keyword">for</span> od <span class="token keyword">in</span> odds<span class="token punctuation">:</span>  <span class="token comment"># 循环另一个数组</span>
+    vis <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> n  <span class="token comment"># 保存这一轮循环中数组中的数是否被访问，没有访问过才会进行下一步操作</span>
+    <span class="token keyword">if</span> <span class="token keyword">match</span><span class="token punctuation">(</span>od<span class="token punctuation">,</span> evens<span class="token punctuation">,</span> matched<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 判断od这个数在evens中匹配哪一个，能匹配则group_num加1</span>
+        group_num <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>group_num<span class="token punctuation">)</span></code></pre>
+<p>同样总结下算法的流程：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">match</span><span class="token punctuation">(</span>要匹配的数od<span class="token punctuation">,</span> 数组evens<span class="token punctuation">,</span> 记录是否匹配的数组matched<span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>evens<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>od <span class="token operator">+</span> evens<span class="token punctuation">[</span>i<span class="token punctuation">]</span>是素数<span class="token punctuation">)</span> 并且 evens<span class="token punctuation">[</span>i<span class="token punctuation">]</span>没有被访问过<span class="token punctuation">(</span>即vis<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        把evens<span class="token punctuation">[</span>i<span class="token punctuation">]</span>设为已访问<span class="token punctuation">(</span>即vis<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> evens<span class="token punctuation">[</span>i<span class="token punctuation">]</span>还没有被匹配<span class="token punctuation">(</span>即matched<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> 或者 <span class="token keyword">match</span><span class="token punctuation">(</span>matched<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> evens<span class="token punctuation">,</span> <span class="token keyword">match</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            第i个数evens<span class="token punctuation">[</span>i<span class="token punctuation">]</span>与数od匹配matched<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> od
+            返回 <span class="token boolean">True</span>
+返回 <span class="token boolean">False</span></code></pre>
+<p>下面举个简单的例子画图来理解里面<code>match</code>函数的递归作用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/freedomgod/picbeds/img/2022-03-05-1101-1515.png" alt="匈牙利算法举例"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://whfree.top">wwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://whfree.top/posts/cd349d9e/">https://whfree.top/posts/cd349d9e/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whfree.top" target="_blank">Free</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post_share"><div class="social-share" data-image="https://img.whfree.top/post_cover/hungarian_algorithm_cd349d9e.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/kr3dj930/" title="深度优先搜索——Python"><img class="cover" src="https://img.whfree.top/post_cover/dfs_algorithm_kr3dj930.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">深度优先搜索——Python</div></div></a></div><div class="next-post pull-right"><a href="/posts/1ef2gf23/" title="将Python包发布到PyPI"><img class="cover" src="https://img.whfree.top/post_cover/python_package_index_1ef2gf23.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">将Python包发布到PyPI</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/b8f11782/" title="sklearn常用模型使用小结"><img class="cover" src="https://img.whfree.top/post_cover/scikit_learn_logo_small_b8f11782.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-03</div><div class="title">sklearn常用模型使用小结</div></div></a></div><div><a href="/posts/kr3dj930/" title="深度优先搜索——Python"><img class="cover" src="https://img.whfree.top/post_cover/dfs_algorithm_kr3dj930.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-19</div><div class="title">深度优先搜索——Python</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wwh</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/freedomgod" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Python与数据分析</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">题目描述：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">输入描述：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">输出描述：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E8%BF%87%E7%A8%8B"><span class="toc-number"></span> <span class="toc-text">求解过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">直接实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">匈牙利算法</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By wwh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="https://img.whfree.top/icp.png"><span>赣 ICP 备 2021007374 号 - 1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.whfree.top/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="/js/weather.js"></script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

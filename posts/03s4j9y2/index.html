@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Python异步编程入门 | Free</title><meta name="author" content="wwh"><meta name="copyright" content="wwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习总结python中异步编程知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python异步编程入门">
+<meta property="og:url" content="https://whfree.top/posts/03s4j9y2/index.html">
+<meta property="og:site_name" content="Free">
+<meta property="og:description" content="学习总结python中异步编程知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.whfree.top/post_cover/python_asyncio_start_03s4j9y2.jpg">
+<meta property="article:published_time" content="2021-10-04T00:45:28.000Z">
+<meta property="article:modified_time" content="2023-03-27T14:43:02.350Z">
+<meta property="article:author" content="wwh">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.whfree.top/post_cover/python_asyncio_start_03s4j9y2.jpg"><link rel="shortcut icon" href="https://img.whfree.top/website_icon/free_man_circle.png"><link rel="canonical" href="https://whfree.top/posts/03s4j9y2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python异步编程入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-27 22:43:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.whfree.top/post_cover/python_asyncio_start_03s4j9y2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Free"><img class="site-icon" src="https://img.whfree.top/website_icon/free_man_circle.png"/><span class="site-name">Free</span></a></span><div id="he-plugin-simple"></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python异步编程入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-04T00:45:28.000Z" title="发表于 2021-10-04 08:45:28">2021-10-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-27T14:43:02.350Z" title="更新于 2023-03-27 22:43:02">2023-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python异步编程入门"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="理解异步编程"><a href="#理解异步编程" class="headerlink" title="理解异步编程"></a>理解异步编程</h2><p>以前写的函数往往调用后就直接运行直到返回结果，这是同步；如果函数马上返回，等数据到达再通知函数，这是异步。</p>
+<p>再理解下进程、线程和协程：</p>
+<ul>
+<li>进程：进程有独立的地址控件，资源句柄，进程是系统资源分配的最小单位</li>
+<li>线程：线程是进程的一个实体，属于进程，多个线程共享进程的内存地址空间和资源。线程是CPU调度的最小单位。</li>
+<li>协程：“协程就是可以暂停执行的函数”，协程属于线程。</li>
+</ul>
+<p>异步编程：</p>
+<ul>
+<li>回调：回调函数可以理解为是IO事件完毕后执行提前注册的函数</li>
+<li>事件循环：事件循环”是一种等待程序分配事件或消息的编程架构“。基本上来说就是”当A发生时，执行B“</li>
+<li>异步编程：异步编程是一种IO模型，异步IO模型需要一个消息循环，主线程不断重复“读取消息+处理消息”这一个过程。不论什么编程语言，但凡要做异步编程，事件循环+回调这种模式是逃不掉的</li>
+</ul>
+<p>在Python中协程和事件循环一起使用构成了异步编程。</p>
+<h2 id="asyncio的设计"><a href="#asyncio的设计" class="headerlink" title="asyncio的设计"></a>asyncio的设计</h2><p>asyncio模块的特点是只存在一个线程，是一种多任务合作模式，允许异步任务交出执行权给其他任务，等其他任务完成再继续往下执行。</p>
+<ul>
+<li><p>导入asyncio模块：<code>import asyncio</code></p>
+</li>
+<li><p>在函数前加上async关键字，就变成了async函数，特点是执行可以暂停：<code>async def main()</code></p>
+</li>
+<li><p>在async函数内部的异步任务前加上await命令：</p>
+<p><code>await asyncio.sleep(1)</code></p>
+<p>这表示，遇到await命令，就会在异步任务开始执行之后，暂停当前async函数的执行，执行其他任务，等异步任务执行结束，再返回async函数继续往下执行。</p>
+</li>
+<li><p><code>asyncio.run()</code>方法加载async函数，启动事件循环</p>
+</li>
+</ul>
+<h2 id="asyncio工作原理"><a href="#asyncio工作原理" class="headerlink" title="asyncio工作原理"></a>asyncio工作原理</h2><ul>
+<li><p>协程对象：协程对象指一个使用async关键字定义的异步函数，是需要执行的任务，它的调用不会立即执行函数，而是返回一个协程对象。协程不能直接运行，协程对象需要注册到事件循环，由事件循环调用。</p>
+</li>
+<li><p>在Python中编写异步函数时要记住的一件事是，在def之前使用了async关键字并不意味着异步函数将同时运行。如果采用普通函数并在其前面添加async，则事件循环将运行函数而不会中断，因为没有指定允许循环中断你的函数以运行另一个协同程序的位置。指定允许事件循环中断运行的位置非常简单，每次使用关键字await等待事件循环都可以停止运行函数并切换到运行另一个注册到循环的协同程序。</p>
+</li>
+<li><p>事件循环：</p>
+<p>事件循环是执行异步代码并决定如何在异步函数之间切换的对象。如果某个协程在等待某些资源，需要暂停它的执行，在事件循环中注册这个事件，当事件发生的时候，可以再次唤醒这个协程的执行。</p>
+<p>运行异步函数首先需要创建一个协程，然后创建future（<code>asyncio.ensure_future(async_fun)</code>）或task对象，将它们添加到事件循环（<code>asyncio.get_event_loop</code>）中，然后调用<code>loop.run_until_completed</code>启动事件循环，这样就会开始执行future或task对象。</p>
+</li>
+</ul>
+<p>流程是：</p>
+<ul>
+<li>1、事件循环是在线程中执行</li>
+<li>2、从队列中取得任务</li>
+<li>3、每个任务在协程中执行下一步动作</li>
+<li>4、如果在一个协程中调用另一个协程（await），会触发上下文切换，挂起当前协程，并保存现场环境（变量，状态），然后载入被调用协程</li>
+<li>5、如果协程的执行到阻塞部分（阻塞I/O，Sleep），当前协程会挂起，并将控制权返回到线程的消息循环中，然后消息循环继续从队列中执行下一个任务．．．以此类推</li>
+<li>6、队列中的所有任务执行完毕后，消息循环返回第一个任务</li>
+</ul>
+<h2 id="Future-amp-Task对象"><a href="#Future-amp-Task对象" class="headerlink" title="Future &amp; Task对象"></a>Future &amp; Task对象</h2><p>Future对象封装了一个未来会被计算的可调用的异步执行对象，他们被放入队列，状态、结果或者异常能被查询。 Future对象有一个<code>result</code>属性，用于存放未来的执行结果。还有个<code>set_result()</code>方法，是用于设置<code>result</code>的，并且会在给<code>result</code>绑定值以后运行事先给Future对象添加的回调。回调是通过Future对象的<code>add_done_callback()</code>方法添加的。</p>
+<p>Future的创建方法：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 该函数在 Python 3.7 中被加入，更加高层次的函数，返回Task对象</span>
+future1 <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>create_task<span class="token punctuation">(</span>my_coroutine<span class="token punctuation">)</span>
+<span class="token comment"># 在Python 3.7 之前，是更加低级的函数，返回Future对象或者Task对象</span>
+future2 <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>ensure_future<span class="token punctuation">(</span>my_coroutine<span class="token punctuation">)</span></code></pre>
+<p>第一种方法在循环中添加一个协程并返回一个task对象，task对象是future的子类型。第二种方法非常相似，当传入协程对象时返回一个Task对象，唯一的区别是它也可以接受Future对象或Task对象，在这种情况下它不会做任何事情并且返回Future对象或者Task对象不变。</p>
+<p>Future对象有几个状态：</p>
+<ul>
+<li>Pending：就绪</li>
+<li>Running：运行</li>
+<li>Done：完成</li>
+<li>Cancelled：取消</li>
+</ul>
+<p>创建Future对象的时候，状态为Pending，事件循环调用执行的时候就是running，调用完毕就是done，如果需要取消Future对象的调度执行，可调用Future对象的cancel()函数。</p>
+<p>除此之外，Future对象还有下面一些常用的方法：</p>
+<ul>
+<li>result()：立即返回Future对象运行结果或者抛出执行时的异常，没有timeout参数，如果Future没有完成，不会阻塞等待结果，而是直接抛出InvalidStateError异常。最好的方式是通过await获取运行结果，await会自动等待Future完成返回结果，也不会阻塞事件循环，因为在asyncio中，await被用来将控制权返回给事件循环。</li>
+<li>done()：非阻塞的返回Future对象是否成功取消或者运行结束或被设置异常，而不是查看future是否已经执行完成。</li>
+<li>cancelled()：判断Future对象是否被取消。</li>
+<li>add_done_callback()：传入一个可回调对象，当Future对象done时被调用。</li>
+<li>exception()：获取Future对象中的异常信息，只有当Future对象done时才会返回。</li>
+<li>get_loop()：获取当前Future对象绑定的事件循环。</li>
+</ul>
+<p>需要注意的是，当在协程内部引发未处理的异常时，它不会像正常的同步编程那样破坏我们的程序，相反，它存储在future内部，如果在程序退出之前没有处理异常，则会出现以下错误：<code>Task exception was never retrieved</code></p>
+<p>有两种方法可以解决此问题，在访问future对象的结果时捕获异常或调用future对象的异常函数：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token comment"># 调用结果时捕获异常</span>
+    my_promise<span class="token punctuation">.</span>result<span class="token punctuation">(</span><span class="token punctuation">)</span>
+catch Exception<span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+<span class="token comment"># 获取在协程执行过程中抛出的异常</span>
+my_promise<span class="token punctuation">.</span>exception<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h2 id="asyncio使用详解"><a href="#asyncio使用详解" class="headerlink" title="asyncio使用详解"></a>asyncio使用详解</h2><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li><p>协程完整的工作流程是这样的：</p>
+<ul>
+<li>定义或创建协程对象</li>
+<li>将协程转为task任务</li>
+<li>定义事件循环对象容器</li>
+<li>将task任务扔进事件循环对象中触发运行</li>
+</ul>
+</li>
+<li><p>协程：协程通过 async/await 语法进行声明，是编写异步应用的推荐方式。注意：简单地调用一个协程并不会将其加入执行队列。</p>
+</li>
+<li><p>要真正运行一个协程，asyncio 提供了三种主要机制：</p>
+<ul>
+<li><code>asyncio.run()</code>函数用来运行最高层级的入口点协程函数。该函数运行传入的协程，负责管理asyncio事件循环并结束异步生成器。当有其他asyncio事件循环在同一线程中运行时，此函数不能被调用。如果debug为True，事件循环将以调试模式运行。该函数总是会创建一个新的事件循环并在结束时关闭。它应当被用作asyncio程序的主入口点，理想情况下应当只被调用一次。该函数在Python 3.7被引入，会隐式处理事件循环。</li>
+<li>使用await关键字等待一个协程。</li>
+<li><code>asyncio.create_task()</code>函数用来并发运行作为asyncio任务的多个协程。当一个协程通过<code>asyncio.create_task()</code>等函数被打包为一个Task对象，该协程将自动排入队列准备立即运行。然后通过await或者<code>asyncio.run()</code>自动运行该任务。该函数在Python 3.7中被加入。在Python 3.7之前，可以改用低层级的<code>asyncio.ensure_future()</code>函数。</li>
+</ul>
+</li>
+<li><p>三种运行方式代码如下：</p>
+<pre class="language-none"><code class="language-none">import asyncio
+import time
+
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
+    return delay
+
+async def main():
+    print(f&quot;started at &#123;time.strftime(&#39;%X&#39;)&#125;&quot;)
+
+    # 通过await等待运行，此时两个任务按顺序运行
+    result1 &#x3D; await say_after(2, &#39;hello&#39;)
+    result2 &#x3D; await say_after(1, &#39;world&#39;)
+
+    print(result1, result2)
+
+    task1 &#x3D; asyncio.create_task(say_after(2, &#39;hello2&#39;))
+    task2 &#x3D; asyncio.create_task(say_after(1, &#39;world2&#39;))
+
+    # 通过asyncio.task()包装为task然后await等待运行，此时两个任务并发运行
+    result3 &#x3D; await task1
+    result4 &#x3D; await task2
+    print(result3, result4)
+
+    print(f&quot;finished at &#123;time.strftime(&#39;%X&#39;)&#125;&quot;)
+
+# 通过asyncio.run()函数运行
+asyncio.run(main())
+# 下面相当于上面的asyncio.run()函数
+# loop &#x3D; asyncio.get_event_loop()
+# try:
+#     loop.run_until_complete(main())
+# finally:
+#     loop.close()</code></pre>
+</li>
+<li><p>可等待对象：如果一个对象可以在await语句中使用，那么它就是可等待对象。许多 asyncio API 都被设计为接受可等待对象。可等待对象有三种主要类型：协程、Task对象和Future对象。</p>
+</li>
+<li><p>Future对象：Future对象是一种特殊的低层级可等待对象，表示一个异步操作的最终结果。当一个Future对象被等待，这意味着协程将保持等待直到该Future对象在其他地方操作完毕。在asyncio中需要Future对象以便允许通过async/await使用基于回调的代码。通常情况下没有必要在应用层级的代码中创建Future对象。</p>
+</li>
+<li><p><code>asyncio.sleep()</code>：阻塞delay指定的秒数。如果指定了result，则当协程完成时将其返回给调用者。sleep()总是会挂起当前任务，以允许其他任务运行。</p>
+</li>
+<li><p>注意：如果不在main()函数中await其他协程，其他协程可能来不及运行就被取消了。因为<code>asyncio.run(main())</code>调用的式是<code>loop.run_until_complete(main())</code>，在没有await的情况下，事件循环只关注main()函数一个协程的结束，而不管main()函数中的其他协程任务，没有await，其他协程任务可能在任务完成前被取消。如果需要获取当前待处理Task对象的列表，可以使用<code>asyncio.all_tasks()</code>函数，使用<code>asyncio.current_task()</code>函数获取当前运行的Task实例，如果没有正在运行的任务则返回None。</p>
+</li>
+</ul>
+<h3 id="并发运行任务"><a href="#并发运行任务" class="headerlink" title="并发运行任务"></a>并发运行任务</h3><ul>
+<li><p><code>asyncio.gather(*aws, loop=None, return_exceptions=False)</code>：并发运行aws序列中的可等待对象。如果aws中的某个可等待对象为协程，它将自动作为一个Task加入队列。如果所有可等待对象都成功完成，结果将是一个由所有返回值聚合而成的列表。结果值的顺序与aws中可等待对象的顺序一致。</p>
+</li>
+<li><p>代码如下：</p>
+<pre class="language-none"><code class="language-none">import asyncio
+
+async def factorial(name, number):
+    f &#x3D; 1
+    for i in range(2, number + 1):
+        print(f&quot;Task &#123;name&#125;: Compute factorial(&#123;i&#125;)...&quot;)
+        await asyncio.sleep(1)
+        f *&#x3D; i
+    print(f&quot;Task &#123;name&#125;: factorial(&#123;number&#125;) &#x3D; &#123;f&#125;&quot;)
+    return f
+
+async def main():
+    # 并发运行三个任务
+    result &#x3D; await asyncio.gather(
+        factorial(&quot;A&quot;, 5),
+        factorial(&quot;B&quot;, 3),
+        factorial(&quot;C&quot;, 4),
+    )
+
+    print(result)
+
+asyncio.run(main())</code></pre>
+</li>
+</ul>
+<h3 id="等待任务"><a href="#等待任务" class="headerlink" title="等待任务"></a>等待任务</h3><ul>
+<li><code>asyncio.wait(aws, *, loop=None, timeout=None, return_when=ALL_COMPLETED)</code>：并发运行aws指定的可等待对象并阻塞线程直到满足return_when指定的条件。如果aws中的某个可等待对象为协程，它将自动作为任务加入日程。直接向wait()传入协程对象已弃用，因为这会导致令人迷惑的行为。返回两个Task/Future集合: (done, pending)，（已完成的，未完成的）</li>
+</ul>
+<h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><ul>
+<li><p>可通过task.add_done_callback()方法给任务添加回调函数，当任务执行完成时会自动调用该函数并传入Task对象。</p>
+<pre class="language-none"><code class="language-none">import asyncio
+
+def callback(task):
+    print(task, &quot;done&quot;)
+
+async def hello():
+    print(&quot;hello&quot;)
+    await asyncio.sleep(0)
+
+async def main():
+    task &#x3D; asyncio.create_task(hello())
+    task.add_done_callback(callback)
+    await task
+
+asyncio.run(main())</code></pre>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://whfree.top">wwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://whfree.top/posts/03s4j9y2/">https://whfree.top/posts/03s4j9y2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whfree.top" target="_blank">Free</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"><div class="social-share" data-image="https://img.whfree.top/post_cover/python_asyncio_start_03s4j9y2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/9b708780/" title="Butterfly标签外挂指南"><img class="cover" src="https://img.whfree.top/post_cover/hqdefault_hexo_tag_plugins_9b708780.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Butterfly标签外挂指南</div></div></a></div><div class="next-post pull-right"><a href="/posts/b8f11782/" title="sklearn常用模型使用小结"><img class="cover" src="https://img.whfree.top/post_cover/scikit_learn_logo_small_b8f11782.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">sklearn常用模型使用小结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/9b708780/" title="Butterfly标签外挂指南"><img class="cover" src="https://img.whfree.top/post_cover/hqdefault_hexo_tag_plugins_9b708780.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-04</div><div class="title">Butterfly标签外挂指南</div></div></a></div><div><a href="/posts/029303py/" title="Python爬虫技术——深入理解原理、技术与开发"><img class="cover" src="https://img.whfree.top/post_cover/python_crawler_029303py.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-04</div><div class="title">Python爬虫技术——深入理解原理、技术与开发</div></div></a></div><div><a href="/posts/ccbca60a/" title="用户消费行为数据分析"><img class="cover" src="https://img.whfree.top/post_cover/user_date_analysis_ccbca60a.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-05</div><div class="title">用户消费行为数据分析</div></div></a></div><div><a href="/posts/b8f11782/" title="sklearn常用模型使用小结"><img class="cover" src="https://img.whfree.top/post_cover/scikit_learn_logo_small_b8f11782.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-03</div><div class="title">sklearn常用模型使用小结</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wwh</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/freedomgod" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Python与数据分析</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">理解异步编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#asyncio%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">asyncio的设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#asyncio%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">asyncio工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future-amp-Task%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">Future &amp; Task对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#asyncio%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">asyncio使用详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">5.1.</span> <span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E8%BF%90%E8%A1%8C%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.2.</span> <span class="toc-text">并发运行任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%89%E5%BE%85%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.3.</span> <span class="toc-text">等待任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83"><span class="toc-number">5.4.</span> <span class="toc-text">回调</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By wwh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="https://img.whfree.top/icp.png"><span>赣 ICP 备 2021007374 号 - 1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.whfree.top/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="/js/weather.js"></script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

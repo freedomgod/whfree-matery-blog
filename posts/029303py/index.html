@@ -1,0 +1,567 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Python爬虫技术——深入理解原理、技术与开发 | Free</title><meta name="author" content="wwh"><meta name="copyright" content="wwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python爬虫技术书籍读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫技术——深入理解原理、技术与开发">
+<meta property="og:url" content="https://whfree.top/posts/029303py/index.html">
+<meta property="og:site_name" content="Free">
+<meta property="og:description" content="Python爬虫技术书籍读书笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.whfree.top/post_cover/python_crawler_029303py.jpg">
+<meta property="article:published_time" content="2022-04-04T00:45:28.000Z">
+<meta property="article:modified_time" content="2023-03-27T14:39:58.130Z">
+<meta property="article:author" content="wwh">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.whfree.top/post_cover/python_crawler_029303py.jpg"><link rel="shortcut icon" href="https://img.whfree.top/website_icon/free_man_circle.png"><link rel="canonical" href="https://whfree.top/posts/029303py/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python爬虫技术——深入理解原理、技术与开发',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-27 22:39:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.whfree.top/post_cover/python_crawler_029303py.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Free"><img class="site-icon" src="https://img.whfree.top/website_icon/free_man_circle.png"/><span class="site-name">Free</span></a></span><div id="he-plugin-simple"></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-fw fas fa-compass"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/friends/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python爬虫技术——深入理解原理、技术与开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-04T00:45:28.000Z" title="发表于 2022-04-04 08:45:28">2022-04-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-27T14:39:58.130Z" title="更新于 2023-03-27 22:39:58">2023-03-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>27分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python爬虫技术——深入理解原理、技术与开发"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="第1章-开发环境配置"><a href="#第1章-开发环境配置" class="headerlink" title="第1章 开发环境配置"></a>第1章 开发环境配置</h2><h2 id="第2章-爬虫基础"><a href="#第2章-爬虫基础" class="headerlink" title="第2章 爬虫基础"></a>第2章 爬虫基础</h2><ol>
+<li><p>HTTP基础</p>
+<ul>
+<li><p>URI和URL：分别表示统一资源标识符和定位符，URL是URI的子集。</p>
+</li>
+<li><p>HTTP和HTTPS：HTTP是超文本传输协议，而HTTPS是加入SSL层后的更安全的HTTP。</p>
+</li>
+<li><p>HTTP请求过程：请求的过程是从客户端向服务器端发送一个请求，服务器接收到请求再把相应的响应发送回去，这样就完成了一个请求过程。</p>
+<p>这里通过浏览器的开发者工具可以监听页面请求，这个对于爬虫来说应该是一个比较重要的分析过程吧。</p>
+<p>Network面板中：</p>
+<ul>
+<li>Name：请求的文件名</li>
+<li>Status：响应状态码</li>
+<li>Type：请求的文档类型</li>
+<li>Initator：请求源</li>
+<li>Size：资源大小</li>
+<li>Time：发起请求到获取响应所用时间</li>
+<li>Waterfall：网络请求瀑布流</li>
+</ul>
+<p>点击请求有更具体的信息为：</p>
+<ul>
+<li>Request URL：请求的完整URL</li>
+<li>Request Method：请求的方式（GET、POST等）</li>
+<li>Status Code：响应状态码</li>
+<li>Remote Address：远程服务器地址和端口</li>
+<li>Referer Policy：Referer判别策略</li>
+</ul>
+<p>以上这些要明白其意义及作用。</p>
+</li>
+<li><p>请求方法：</p>
+<p>|  方法  | 描述                                                         |<br>| :——: | :—————————————————————————————- |<br>|  GET   | 请求指定页面信息，并返回页面内容                             |<br>|  HEAD  | 与GET请求类似，但返回的响应信息没有具体内容，仅用于获取响应头 |<br>|  POST  | 请求指定页面信息，提交的数据包含在请求体中，常用于表单提交或上传文件等 |<br>| 。。。 | 。。。                                                       |</p>
+</li>
+<li><p>请求头：</p>
+<p>| 字段           | 描述                                                     |<br>| ——————— | ———————————————————————————— |<br>| Accept         | 请求报头域，用于告诉服务端，客户端可以接收什么类型的信息 |<br>| Accept-Charset | 指定客户端可接受的编码格式                               |<br>| Content-Type   | 请求体的文档类型                                         |<br>| Cookie         | 存储在本地的数据                                         |<br>| Host           | 服务端的域名及端口                                       |<br>| Referer        | 标识请求从哪个页面发过来的，可以做来源统计、防盗链等     |<br>| User-Agent     | 用于表示客户端的操作系统和浏览器版本                     |</p>
+<p>请求头是编写爬虫的重要步骤，必须理解。</p>
+</li>
+<li><p>响应状态码：</p>
+<p>| 类型 | 含义                                           |<br>| —— | ——————————————————————— |<br>| 1    | 信息，服务器接收到请求，需要请求者继续执行操作 |<br>| 2    | 成功，操作被成功接收并处理                     |<br>| 3    | 重定向，需要进一步操作以完成请求               |<br>| 4    | 客户端错误，请求包含语法错误或无法完成请求     |<br>| 5    | 服务器错误，服务器在处理请求时发生错误         |</p>
+<p>熟记响应状态码的意义可以很好的了解爬虫的运行状况，以便准确的作出应对措施。</p>
+</li>
+<li><p>响应头：</p>
+<p>| 字段             | 描述                                   |<br>| ———————— | ——————————————————— |<br>| Content-Type     | 响应体中数据的类型                     |<br>| Content-Encoding | 响应内容的编码                         |<br>| Server           | 包含服务器的信息，如服务器名、版本号等 |<br>| Set-Cookie       | 设置Cookie                             |</p>
+</li>
+</ul>
+</li>
+<li><p>网页基础</p>
+<ul>
+<li><p>HTML：超文本标记语言，整个网页就是由各种节点嵌套组合而成的，有着复杂的层次关系。</p>
+</li>
+<li><p>CSS：层叠样式表，主要就是把页面节点布局到合适的位置，相当于是装饰性的东西吧。</p>
+</li>
+<li><p>CSS选择器：这个还是需要了解一下的，有时候爬虫需要用CSS选择器来定位元素。以下列出一些常用的：</p>
+<p>| 选择器      | 例子     | 说明                         |<br>| —————- | ———— | —————————————— |<br>| .class      | .title   | 选择class为title的所有节点   |<br>| #id         | #button1 | 选择id为button1的所有节点    |<br>| [attribute] | [target] | 选择带有target属性的所有节点 |</p>
+<p>还有很多只能日后要用再了解了。</p>
+</li>
+<li><p>JavaScript：一种脚本语言，可以让页面有动态效果。爬虫中也常遇到，需要解析JS代码获取其中的信息。</p>
+</li>
+</ul>
+</li>
+<li><p>静态页面和动态页面</p>
+<p>静态页面是用HTML编写的，内容固定。优点是加载速度快、编写简单，缺点是维护性差、不能根据条件动态产生页面内容。</p>
+<p>动态页面是根据不容条件显示不同内容，实现方式很多，都是由服务端根据不同条件动态想客户端发送内容。</p>
+<p>应该说静态页面会比较好爬内容吧，动态难一点。</p>
+</li>
+</ol>
+<h2 id="第3章-网络库-urllib"><a href="#第3章-网络库-urllib" class="headerlink" title="第3章 网络库 urllib"></a>第3章 网络库 urllib</h2><h2 id="第4章-urllib3"><a href="#第4章-urllib3" class="headerlink" title="第4章 urllib3"></a>第4章 urllib3</h2><h2 id="第5章-requests"><a href="#第5章-requests" class="headerlink" title="第5章 requests"></a>第5章 requests</h2><ol>
+<li><p>基本用法</p>
+<ul>
+<li>用get向页面发送请求：requests(url, params=None)</li>
+<li>添加HTTP请求头：在get请求中添加headers的字典参数，一般会有user-agent、cookie等</li>
+<li>抓取二进制数据：请求的内容是二进制文件，如png图片、pdf文档等等，这些需要保存为文件，可以使用content属性得到bayes形式的数据，然后设置后缀保存文件</li>
+<li>post请求：发送POST请求要指定data字典参数，如requests.post(url, data=data)</li>
+<li>响应数据：返回的响应是一个Response对象，含有很多信息，如状态码、响应头、Cookie等</li>
+</ul>
+</li>
+<li><p>高级用法</p>
+<ul>
+<li><p>上传文件：实际上是一个POST请求，只需指定files参数即可，可以是BufferedReader对象，这个是python中用open方法打开文件的一个对象</p>
+</li>
+<li><p>处理Cookie：设置Cookie有两种方法：一是创建RequestsCookieJar对象，然后用set方法设置每一个Cookie，这个方法是太麻烦了，所以直接忽略；二是Cookie包含在headers字典中</p>
+</li>
+<li><p>使用同一个Session（会话）：这个应该也重要吧，要让爬虫作为同一个客户端多次抓取页面，就要保持在同一个Session下，requests提供了Session对象，大致的用法如下：</p>
+<pre class="language-python" data-language="python"><code class="language-python">session <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+r2 <span class="token operator">=</span> session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+<p>这个目前用的也很少，只能说先了解了。</p>
+</li>
+<li><p>SSL证书验证：用requests请求HTTPS URL时，如果证书验证错误就会报一个SSL的错误。这是requests默认会对证书进行验证。有一个默认参数verify值为True，可以设为False来跳过验证</p>
+</li>
+<li><p>使用代理：requests使用代理发送请求只需指定proxies字典参数。</p>
+<pre class="language-python" data-language="python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'http'</span><span class="token punctuation">:</span> <span class="token string">'http://123.123.11.12:80'</span><span class="token punctuation">,</span> <span class="token string">'https'</span><span class="token punctuation">:</span> <span class="token string">'https://123.123.11.12.80'</span><span class="token punctuation">&#125;</span></code></pre>
+<p>然后有的代理要使用什么HTTP Basic Auth，就要用类似<code>http://user:password@host:port</code>这样的语法设置。</p>
+<pre class="language-python" data-language="python"><code class="language-python">proxies <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'http'</span><span class="token punctuation">:</span> <span class="token string">'http://user:password@123.123.11.12:80'</span><span class="token punctuation">&#125;</span></code></pre>
+<p>Request还支持SOCKS协议的代理，要用的话需要安装第三方库，<code>pip install requests[socks]</code>。不过我没试成功，还是得等有代理再看情况了。</p>
+</li>
+<li><p>超时：爬虫过程中常遇到的就是超时问题了，一个做法就是用<code>try...except</code>语句捕捉异常，另一个就是指定timeout参数。</p>
+</li>
+<li>身份验证：用requests进行身份验证只需设置auth参数，auth参数的值是一个HTTPBasicAuth对象，封装了用户名和密码。不过这个我还真没用过。</li>
+</ul>
+</li>
+</ol>
+<h2 id="第6章-Twisted网络框架"><a href="#第6章-Twisted网络框架" class="headerlink" title="第6章 Twisted网络框架"></a>第6章 Twisted网络框架</h2><h2 id="第7章-正则表达式"><a href="#第7章-正则表达式" class="headerlink" title="第7章 正则表达式"></a>第7章 正则表达式</h2><ol>
+<li>用match方法匹配字符串：re.match(pattern, str)用于在字符串str中匹配模式pattern，匹配成功会返回一个对象，失败为None。</li>
+<li>用search方法查找模式：使用与match类似，只不过是可以在字符串中找到多个与模式匹配的字符串。</li>
+<li>匹配多个字符串：要搜索多个字符串可以利用正则表达式的知识，用|符号，可以理解为“或”。</li>
+<li>匹配任何单个字符：这个就是模糊匹配了，这个要记的就多了，有很多符号表示什么意思之类的，比如 . 表示匹配任意单个字符，*表示前一个字符出现任意次。</li>
+<li>分组：一个模式字符串中用圆括号括起来的部分一般是我们需要的，这部分就会作为一组，然后通过group的方法获取指定的组匹配的字符串，也是挺方便的。</li>
+<li>使用findall和finditer查找每一次出现的位置：返回一个能匹配模式的所有字符串的列表，和search有点类似。</li>
+<li>使用sub和subn搜索与替换：这两个方法用来搜索和替换，替换匹配出来的字符串。</li>
+<li>使用split分割字符串：根据正则表达式分割字符串，这个挺好用的，对于一些复杂形式的字符串，只要正则表达式写的好就能很好的分割出来。</li>
+</ol>
+<p>最后，虽然觉得正则表达式挺强大的，但是使用起来终究还是感觉复杂，表达式不好写，容易出错，所以通常都是使用替代品，比如BeautifulSoup等其他好用的工具。</p>
+<h2 id="第8章-lxml与XPath"><a href="#第8章-lxml与XPath" class="headerlink" title="第8章 lxml与XPath"></a>第8章 lxml与XPath</h2><ol>
+<li><p>lxml基础</p>
+<p>lxml是一个解析HTML和XML的解析库，支持XPath的解析方式。</p>
+<p>lxml的操作有：</p>
+<ul>
+<li>使用parse函数传入XML文件来读取XML文件，返回一个对象，可以获取某个节点等</li>
+<li>用fromstring函数解析字符串形式的XML文档</li>
+<li>操作HTML，也类似于操作XML。由lxml导入etree模块，有方法HTMLParser()，然后获取节点。</li>
+</ul>
+</li>
+<li><p>XPath</p>
+<p>XPath的基本语法是多级目录。</p>
+<p>|          | 描述                     |<br>| ———— | ———————————— |<br>| nodename | 选取此节点的所有子节点   |<br>| /        | 从当前节点选取直接子节点 |<br>| //       | 从当前节点选取子孙节点   |<br>| .        | 选取当前节点             |<br>| ..       | 选取当前节点的父节点     |<br>| @        | 选取属性                 |</p>
+<p>用法比如：tree = etree.HTML(html), tags = tree.xpath(“…”)</p>
+<p>选取所有节点：”//*”</p>
+<p>选取子节点：一个斜杠，表示选取当前节点下的直接子节点</p>
+<p>属性匹配与获取：获取节点的属性用@，然后可以加[]中括号表示过滤条件</p>
+<p>多属性匹配：可以使用and和or表示与和或逻辑</p>
+</li>
+</ol>
+<h2 id="第9章-Beautiful-Soup库"><a href="#第9章-Beautiful-Soup库" class="headerlink" title="第9章 Beautiful Soup库"></a>第9章 Beautiful Soup库</h2><p>Beautiful Soup库是一个非常非常方便的XML和HTML解析库，还记得刚入门爬虫的时候就接触到了这个库，用起来也很好入手，几个易懂的语句就能从页面中提取需要的数据。还是继续从书中学习这个库的知识吧。</p>
+<ol>
+<li><p>Beautiful Soup基础</p>
+<p>第一步是选择解析器，它支持多种解析器，比如lxml等。我也只了解python标准库的HTML解析器和lxml的HTML、XML解析器其他的都不熟。这里也再记一记他们的优缺点吧：</p>
+<p>| 解析器          | 使用方法                           | 优点                            | 缺点            |<br>| ———————- | ————————————————— | ———————————————- | ———————- |<br>| Python标准库    | BeautifulSoup(code, ‘html.parser’) | 执行速度适中，容错能力强        |                 |<br>| lxml HTML解析器 | BeautifulSoup(code, ‘lxml’)        | 解析速度快，容错能力强          | 需要安装C语言库 |<br>| lxml XML解析器  | BeautifulSoup(code, ‘xml’)         | 解析速度快，唯一支持XML的解析器 | 需要安装C语言库 |</p>
+<p>可以看出，基本上爬虫中lxml解析器是最佳的选择了，事实上这个库的使用我也只用过这个解析器，所以其他的解析器没有什么感觉。</p>
+</li>
+<li><p>节点选择器</p>
+<ul>
+<li>获取节点的名称：soup.title.name</li>
+<li>获取节点的属性：soup.li.attrs，是一个字典，后面还可以获取具体的值</li>
+<li>获取节点内容soup.a.string，用string属性获取节点包含的文本内容</li>
+<li>选择子节点：soup.head.children</li>
+<li>选择父节点：soup.a.parent</li>
+</ul>
+</li>
+<li><p>方法选择器</p>
+<ul>
+<li>find<em>all方法：根据节点、属性、文本内容等选择所有符合要求的节点。要注意的是找class属性时要后面加下划线（class</em>）。</li>
+<li>find方法：只查询满足条件的第1个节点，其他和find_all用法一样。</li>
+</ul>
+</li>
+<li><p>CSS选择器</p>
+<p>BeautifulSoup还有一种CSS选择器，CSS虽然知道，但这个CSS选择器就了解甚少了。</p>
+<ul>
+<li><p>基本用法：</p>
+<p>用select方法，接收字符串类型的CSS选择器</p>
+<p>（1）.classname：选取样式名为classname的节点，是选取class属性值的节点</p>
+<p>（2）nodename：选取节点名为nodename的节点</p>
+<p>（3）#idname：选取id属性值为idname的节点</p>
+</li>
+<li><p>嵌套选择节点</p>
+<p>这个和节点选择器类似，都是可以嵌套调用。这个也不难理解，HTML代码有很多节点构成，而节点中又会有其他各种节点，所以从不同角度看都是有着嵌套的节点</p>
+</li>
+<li><p>获取属性值与文本</p>
+<p>获取属性值用attrs，也可以直接用[…]方式引用节点的属性。获取节点的文本内容用get_text()方法，也可以使用string属性。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>最后就是小结一下：Beautiful Soup简直太方便了，结合浏览器本身可以获取对应节点的CSS、XPath，基本上想从页面中获取什么内容都能很快获取，当然前提是能够获取到想要的源代码。而爬虫远不止这获取源代码这一部分的内容。</p>
+<h2 id="第10章-pyquery库"><a href="#第10章-pyquery库" class="headerlink" title="第10章 pyquery库"></a>第10章 pyquery库</h2><h2 id="第11章-文件存储"><a href="#第11章-文件存储" class="headerlink" title="第11章 文件存储"></a>第11章 文件存储</h2><p>这一章主要讲有关文件的操作，因为爬虫爬取到的数据要进行分析，就得存储到文件中去，而各类文件的操作及操作方法都有所不同，还要掌握一些工具。</p>
+<ol>
+<li><p>打开文件</p>
+<p>用open函数打开一个文件，返回一个对象，这个返回的东西感觉类似于C语言中的指针吧，可以用来操作文件内容。而打开文件的模式有’r’、’w’、’a’、’b’等等，这些含义都需要了解，选择对应需要的模式。</p>
+<p>打开文件后的返回值有几个方法：</p>
+<ul>
+<li>write(string)：向文件写入内容，会返回写入文件的字节数</li>
+<li>read([n])：读取文件内容，n是可选参数，表示读取文件指针位置之后的n个字节，否则就是之后的全部字节</li>
+<li>seek(n)：重设文件指针。这里如果用write写入内容后，文件指针应该是在文件末尾的，所以如果需要再读取内容需要调用seek(0)才能读取刚才写入的内容</li>
+<li>close()：关闭文件，对文件进行读写操作后要记得关闭，这个貌似也挺像C语言中的一样，不关闭就相当于还占用着这个文件，其他地方就可能打不开这个文件。当然，好像程序结束后都会自动关闭的，只是这样记得关闭是一个好习惯。而且python中还有上下文管理器with，这个也能用open打开文件，而且结束后会自动关闭文件，可读性也好，就挺不错的。</li>
+</ul>
+</li>
+<li><p>读行和写行</p>
+<p>用read和write加上行结束符也可以读写文件的整行，但比较麻烦。而有readline、readlines和writelines这些用于读写整行的方法（注意没有writeline方法）。</p>
+</li>
+<li><p>用FileInput对象读取文件</p>
+<p>按照书上的讲解：如果读取一个非常大的文件，使用readlines函数会占用很多内存，而一个解决方法就是用循环加readline方法逐行读取。其次就是用fileinput模块中的input函数读取指定的文件。</p>
+<p>还了解到，input方法返回一个FileInput对象，这个对象使用缓存机制，不会一次性读取文件所有内容，所以比readlines更节省内存资源。然后用法也简单，语句是fobj = fileinput.input(filepath)</p>
+</li>
+<li><p>处理XML格式的数据</p>
+<p>因为这个格式的数据接触的很少，而且也好少用到过，所以就快速浏览过去了。</p>
+<ul>
+<li>读取与搜索XML文件：Python中导入XML模块利用其中的API操作XML文件，比如xml.etree.ElementTree模块。</li>
+<li>字典与XML字符串的转换：可以利用dicttoxml、xmltodict模块</li>
+</ul>
+</li>
+<li><p>处理JSON格式的数据</p>
+<p>这个就很广泛了，而且也有很多优点</p>
+<ul>
+<li><p>JSON字符串与字典相互转换：用json模块的dumps和loads方法，并且要注意loads是JSON转字典，而load是从文件中的JSON转字典，这个搞混淆了就怪尴尬的。还有就是有时候会遇到转换错误，我遇到的时候是有一个引号的问题，字符串中的引号需要是双引号才能转为字典，这个时候还可以利用eval()方法来执行代码返回字符串对应的字典</p>
+</li>
+<li><p>将JSON字符串转换为类实例</p>
+<p>这个特性没用过，不过也还能看懂。不同于普通的loads方法，传入object_hook关键字参数，指定一个类或回调函数，则可以将JSON字符串转换为类实例。</p>
+</li>
+<li><p>JSON字符串转XML字符串：借助工具：dicttoxml以及dicttoxml</p>
+</li>
+</ul>
+</li>
+<li><p>CSV文件存储</p>
+<p>CSV文件是叫做逗号分隔值文件，这个文件可以用Excel打开并编辑，而又比xls类的文件更简洁，结构清晰简单，所以用CSV保存数据是比较方便的。</p>
+<ul>
+<li>读写CSV文件：Python提供csv模块，不过我没有用过，并且看起来没有那么便捷。一般我都是使用pandas的read_csv和to_csv方法来对CSV文件进行读写，只要一个语句，非常的方便，基本上满足了所有的需要了。</li>
+</ul>
+</li>
+<li><p>小结</p>
+<p>这章讲了很多种读写文本文件的方式，这里的文本文件不只是txt格式的，包括XML、JSON和CSV都算作了纯文本的文件，只是文件的数据组织形式不同。而JSON和CSV文件最常用，因为这两种文件数据冗余较小，适合通过网络传输。然后，数据存储当然不仅仅只有文本文件，还有各种数据库，比如SQLite、MySQL、Mongodb等，这也是下一章的内容了。</p>
+</li>
+</ol>
+<h2 id="第12章-数据库存储"><a href="#第12章-数据库存储" class="headerlink" title="第12章 数据库存储"></a>第12章 数据库存储</h2><ol>
+<li><p>SQLite数据库</p>
+<ul>
+<li>管理SQLite数据库：一个跨平台的SQLite数据库管理工具：DB Browser for SQLite</li>
+<li>用Python操作SQLite数据库：sqlite3模块提供的函数可以操作SQLite数据库。一般先要用connect方法打开SQLite数据库，然后用cursor方法获取sqlite3.Cursor对象，通过这个对象的execute方法执行各种SQL语句，增删改查等等。</li>
+</ul>
+</li>
+<li><p>MySQL数据库</p>
+<ul>
+<li><p>安装：要了解MySQL的安装，登录操作以及数据库创建等基本知识。</p>
+</li>
+<li><p>在Python中使用MySQL：用pymysql模块，记住几个函数和方法：</p>
+<p>（1）connect函数：连接数据库</p>
+<p>（2）cursor方法：获取操作数据库的Cursor对象</p>
+<p>（3）execute方法：用于执行SQL语句</p>
+<p>（4）commit方法：在修改数据库后，需要调用该方法提交修改</p>
+<p>（5）rollback方法：数据库回滚</p>
+</li>
+</ul>
+</li>
+<li><p>非关系型数据库</p>
+<p>前面的两种数据库都是关系型数据库，数据以二维表的形式存储。另一种是非关系型数据库，叫NoSQL，这个就了解的太少了，需要好好了解一下。</p>
+<p>非关系型数据库主要包括对象数据库、键-值数据库、文档数据库、图形数据库、表格数据库等。书中主要是要介绍很流行的文档数据库MongoDB。</p>
+<ul>
+<li><p>MongoDB数据库</p>
+<p>书中讲了一个非常通俗的例子：如果要保存博客和相关的评论，用关系型数据库就需要建立两个表，一个保存博文，另一个保存评论，然后通过键值关联这两个表，这样如果有更多的数据，关系也会更复杂，需要关联更多的表；而如果使用MongoDB，就可以直接把博文和评论都放在一个文档中存储，无须关联，查询速度也更快。这里就让我明白了一些有关非关系型数据库的特点。</p>
+</li>
+<li><p>pymongo模块</p>
+<p>Python中用pymongo模块可以操作MongoDB数据库。然后具体的操作方式就要结合文档实操了。</p>
+</li>
+</ul>
+<p>然后就是可以结合爬虫，把爬取到的数据放进数据库中，这样更能了解数据库，操作也会越来越熟练，这对数据处理也有很大的裨益。</p>
+</li>
+</ol>
+<h2 id="第13章-抓取异步数据"><a href="#第13章-抓取异步数据" class="headerlink" title="第13章 抓取异步数据"></a>第13章 抓取异步数据</h2><ol>
+<li><p>异步加载与AJAX</p>
+<p>一些网页是静态的，意味着内容是通过服务器端以同步的方式按顺序发送到客户端的，这种网页应该都比较好爬。而一些页面使用了异步加载的方式，就是让静态部分（HTML、CSS、JS等）先以同步的方式装载，然后动态的部分再另外向服务器发送一个或多个异步请求，然后再显示，这种叫AJAX。虽然具体原理是不清楚的，但是在爬虫中却是常常遇到动态页面，普通的方式就不能获取到含有真实数据的源码。</p>
+</li>
+<li><p>基本原理</p>
+<p>AJAX的实现分为3步：发送请求-&gt;解析响应-&gt;渲染页面。</p>
+<p>（1）发送请求</p>
+<p>​    在页面中实现业务逻辑与页面交互的是JS，而发送请求需要调用浏览器提供的API，然后还有什么jQuery，这些就不深入了解了</p>
+<p>（2）解析响应</p>
+<p>​    主要是响应JSON格式的数据</p>
+<p>（3）渲染页面</p>
+<p>​    渲染主要是将从服务器端获取的响应数据以某种形式显示在Web页面的某些元素上</p>
+</li>
+<li><p>逆向工程</p>
+<p>前面学了AJAX请求、异步加载，而这些会让爬虫增加困难，就是要知道页面的数据是怎么加载进去的，要怎么获取异步请求的URL，没想到的是这个也能叫逆向工程，以前总是以为破解软件、源码之类的才会这么说，居然这个过程也称为逆向工程，瞬间就感觉高大尚了。</p>
+<p>书中给了一个例子，里面说明了一个问题，有时获取到的页面源码可能是在JS渲染页面前，可以在开发工具的Response选项看到，而Elements选项卡显示的是JS渲染后的。我们需要的是渲染后的，因为这才是页面最后显示的样子，需要的数据也在这里，而用requests抓取的HTML代码和Response选项卡中显示的HTML代码是一样的。所以，如果数据没有在Response选项卡中，那么很可能是通过异步方式获取的数据，然后再利用JS将数据显示在页面上。</p>
+<p>而目的就是找到异步访问的URL。有几种方式可以了解，如果知道大概的URL名字，可以利用开发者工具中的Filter文本框过滤，不知道就使用XHR过滤，然后就在里面找返回需要数据的那条请求。</p>
+<p>最后就是提取数据，一般数据格式是JSON，可以用json模块的loads转换为字典。</p>
+</li>
+</ol>
+<h2 id="第14章-可见即可爬"><a href="#第14章-可见即可爬" class="headerlink" title="第14章 可见即可爬"></a>第14章 可见即可爬</h2><p>从之前可以知道从Web页面获取数据的方式有同步和异步（AJAX）两种，对于同步的方式比较简单，而异步需要分析异步请求的URL。还有一类页面是通过JS在前端得到的，要想找到规律，就需要分析JS代码。但是很多参数都是加密的，比较难发现规律，给爬虫造成了困难。那么selenium就是刚接触爬虫时就了解到的可见即可爬的工具，用它获取的页面源码是和正常浏览看到的是一样的，所以不管页面多复杂都能获取渲染后的页面源码。</p>
+<ul>
+<li><p>第一步是需要安装一系列的东西，比如selenium模块、chromedriver等。</p>
+</li>
+<li><p>selenium基本使用：<code>browser = webdriver.Chrome(),browser.get(url)</code>还有一些获取页面元素的方法。</p>
+</li>
+<li><p>查找节点：<code>find_element_by_</code>方法有很多，命名是有规律的，但是以我以前用过的经验来看，有的页面获取元素是能够获取到的，但是有的就获取不到，为空，尽管代码看起来没什么错误。</p>
+</li>
+<li><p>节点交互：selenium还可以模拟浏览器的动作，比如单机某个按钮、输入文本等。</p>
+</li>
+<li>动作链：还有一些页面需要鼠标拖曳、按键等，这些可以用ActionChains对象实现。</li>
+<li><p>执行JS代码：对于某些操作selenium没有提供相应的API，但可以用selenium的execute_script方法直接运行JS代码实现。</p>
+</li>
+<li><p>管理Cookies：用selenium可以方便地管理Cookie，例如获取、添加、删除Cookie等。</p>
+</li>
+<li><p>改变节点属性值：selenium本身并没有提供修改节点属性的API，不过可以通过执行JS代码的方式设置节点属性。</p>
+</li>
+</ul>
+<p>小结：selenium可以说是同时跨测试和爬虫两个领域，在很多页面中，selenium比requests、beautifulsoup等库方便很多，但是是速度更慢，因为需要模拟浏览器的动作和页面渲染需要时间，所以可以根据需要选择合适的方法。</p>
+<h2 id="第15章-基于Splash的爬虫"><a href="#第15章-基于Splash的爬虫" class="headerlink" title="第15章 基于Splash的爬虫"></a>第15章 基于Splash的爬虫</h2><p>Splash是一个JS渲染服务，是一个带有HTTP API的轻量浏览器。功能有很多，但是之前未曾了解过，所以很多都看不懂，就挑几点来说吧，一个能够异步处理多个网页的渲染，可以获取渲染后的页面源代码或截图，还可以用JS处理网页内容。基于这几点看来好像挺不错。</p>
+<p>了解完是什么，之后就是如何安装，这个跟着说明、教程走就行了。</p>
+<p>然后就是介绍了splash lua脚本，还有一系列关于页面渲染的操作、许多关于爬虫的方法。</p>
+<p>抓取数据有多种方式，selenium和splash是其中两种，也就是通过模拟浏览器的动作来抓取数据，这种方式的好处就是不需要过多对页面获取数据的方式进行分析，只看最后的结果即可。但区别是，selenium是纯python编程就行，而splash要结合Lua脚本，对于不熟悉它的我来说就比较困难了，但也看情况去学吧。</p>
+<h2 id="第16章-抓取移动APP的数据"><a href="#第16章-抓取移动APP的数据" class="headerlink" title="第16章 抓取移动APP的数据"></a>第16章 抓取移动APP的数据</h2><p>之前学的内容都是关于抓取Web页面的，而如果要抓取移动APP的数据，则又有不一样的方式了。由于移动APP通常都会采用异步的方式从服务端获取数据，所以就需要分析移动APP用于获取数据的URL，然后才可以用requests等库抓取数据，听起来和AJAX挺像的。</p>
+<p>但是移动APP又不能像PC浏览器上有开发者工具让你进行分析，所以要想监控APP发送的请求，就需要用一些抓包工具，这个有很多，但是我了解的多的就是Fiddler，所以就选择用它了，不过书中用的是Charles。</p>
+<p>大致的内容有：</p>
+<ul>
+<li>抓取HTTP数据包：主要就是设置方面要弄好</li>
+<li>安装双端证书：要监听数据必须要在两端都安装好证书</li>
+<li>监听HTTPS数据包</li>
+</ul>
+<p>其次就是还有其他很多的工具，具体使用就看情况选择。</p>
+<h2 id="第17章-使用Appium在移动端抓取数据"><a href="#第17章-使用Appium在移动端抓取数据" class="headerlink" title="第17章 使用Appium在移动端抓取数据"></a>第17章 使用Appium在移动端抓取数据</h2><h2 id="第18章-多线程和多进程爬虫"><a href="#第18章-多线程和多进程爬虫" class="headerlink" title="第18章 多线程和多进程爬虫"></a>第18章 多线程和多进程爬虫</h2><p>有时候写爬虫只是为了需要一部分数据，只需要一个程序就能爬取到需要的数据，这种情况可以很快的获取到需要的数据。但是一些时候需要爬取相对大量的数据，这样爬虫内容就很多，花费的时间也很多。之前用selenium爬取网易云的数据时就充分感受到了这一点，在本地运行爬虫真的要花很多时间，效率很低。所以，用多线程、多进程来运用到爬虫上效率就会大大提高。这个学会了应该是非常有用的。</p>
+<ol>
+<li><p>线程与进程</p>
+<ul>
+<li><p>进程：计算机程序有静态和动态的区别，静态的就是存储在磁盘上的可执行二进制文件，动态的就是将这些文件加载到内存中并被操作系统调用，这个动态的程序被称为一个进程。光看这里也许能理解，但还是挺抽象的。只有可执行程序被调入内存才叫进程，每个进程都有自己的地址空间等数据。</p>
+</li>
+<li><p>线程：线程与进程类似，不过线程是在同一个进程下执行的，线程必须依赖进程才能执行。线程包括开始、执行、结束三个部分。一个进程中的各个线程与主线程共享同一块数据空间，所以线程间的信息共享和通信更容易。线程一般是以并发方式执行的，所以可以进行多任务间的协作。但是多线程之间共享数据可能会导致结果不一致，因为不同线程访问同一块数据会由于访问顺序不同而操作结果不一样。不过一般线程库都会有方法让共享的内存区域数据同步。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>有关线程、进程的知识有很多，一开始会觉得很难懂，但是多理解和动手会慢慢的理解这两个到底是什么的。</p>
+<ol>
+<li><p>Python与线程</p>
+<ul>
+<li><p>使用单线程执行程序</p>
+<p>主要是和多线程进行比较，很明显的地方就是运行时间，多线程的效率更高。一般的程序都是单线程，比如运行两个函数，单线程就是需要一个一个运行，第一个运行时就阻塞了，运行完毕才开始第二个；而多线程则可以在运行第一个的时候，几乎同时开始运行第二个，意思是没有完全的同时开始两个函数，只是速度比较快的切换线程去执行函数，这是我的理解。</p>
+</li>
+<li><p>使用多线程执行程序</p>
+<p>Python中有很多内建模块用于支持多线程，书中讲了第一个是_thread。使用_thread模块中的start_new_thread函数会直接开启一个线程，第一个参数是一个函数，可以把这个函数称为线程函数，当线程启动时会自动调用这个函数；第二个参数是给线程函数传递的参数，必须为元组类型。可以写两个简单的函数验证多线程的运行结果。</p>
+</li>
+<li><p>为线程函数传递参数</p>
+<p>就是在start_new_thread的第二个参数传入元组类型。这里关心的地方是，启动线程后，如果不暂停，会出现没等线程函数运行，程序就结束了，这里是还不太理解的地方。</p>
+</li>
+<li><p>线程和锁</p>
+<p>之前的多线程中运行线程函数，最后都需要使用sleep函数让程序处于休眠状态，或使用input函数从终端收集一个字符串，目的是让程序暂停，在所有线程函数都执行完之前阻止程序退出。因为程序无法感知是否有线程正在执行，以及是否所有线程函数都执行完毕。所以，这样看起来挺麻烦的。</p>
+<p>于是，要了解什么是锁，这里的锁不是把程序锁住，不退出，而是可以通过锁让程序了解是否还有线程函数没执行完毕，而且可以做到当所有线程函数执行完后，程序会立刻退出，不需要任何等待。</p>
+<p>锁的使用分为创建锁、获取锁和释放锁。这三个功能需要_thread模块中的1个函数和2个方法，allocate_lock函数用于创建锁对象，然后使用锁对象的acquire方法获取锁，如果不需要锁了，可以使用锁对象的release方法释放锁。locked方法可以判断锁是否被释放。</p>
+</li>
+</ul>
+<ol>
+<li><p>threading模块</p>
+<p>python常用的多线程模块有threading和Queue，这里学一下threading。这个模块的Thread类是主要的对象，可以来创建线程，可以创建Thread的实例，也可以派生子类，创建子类的实例。</p>
+<p>大致的步骤如图。多个线程就多个运行。</p>
+<p>有时也经常见别人是通过继承Thread类，派生一个子类进行创建多线程。这样对于获取线程函数中的返回值也方便。</p>
+<p>下面列出了threading模块的类与函数，有助于理解这个模块：</p>
+</li>
+<li><p>线程同步</p>
+<p>线程同步也是一个重要的问题，从中可以了解线程同步的机制。</p>
+<p>首先是线程锁（互斥锁）。在多进程中，每一个进程都拷贝了一份数据，而多线程的各个线程则共享相同的数据。所以多线程占用的资源更少，但是共享数据就可能导致结果不一致，这是之前就了解到的。解决方法是线程锁，大概就是函数需要获得锁才能运行，运行完再释放锁，同一个锁同一时间只能被一个线程使用。这样的话，虽然能解决变量混用造成的数据结果不一致的问题，但是也降低了运行效率，因为一个线程使用锁运行时其他线程无法—起运行，而且使用锁一定要小心，可能会造成死锁或是其他的问题。</p>
+<p>其次是GIL锁。GIL锁全称是全局解释锁（Global Interpreter Lock），任何python线程在执行前都要先获得GIL锁，然后每执行一部分代码，解释器就会自动释放GIL锁，其他线程就可以竞争这个锁，只有得到才能执行程序。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="第19章-网络爬虫框架：Scrapy"><a href="#第19章-网络爬虫框架：Scrapy" class="headerlink" title="第19章 网络爬虫框架：Scrapy"></a>第19章 网络爬虫框架：Scrapy</h2><p>Scrapy是一个快速、高层次的屏幕抓取和Web抓取框架，用于抓取Web站点并从页面中提取出结构化的数据。Scrapy用途广泛，可以用于数据挖掘、监测和自动化测试等。因为它的内容太多了，所以挑了一部分写下来。从基础理解，主要是了解框架的组件和框架的运行过程。</p>
+<ul>
+<li><p>框架包含的组件有：</p>
+<ul>
+<li>爬虫中间件：位于Scrapy引擎和爬虫之间的框架，主要是用于处理爬虫的响应输入和请求输出。</li>
+<li>调度器中间件：位于Scrapy引擎和调度器之间的框架，主要用于处理从Scrapy引擎发送到调度器的请求和响应。</li>
+<li>调度器：用来接收引擎发过来的请求，压入队列中，并在引擎再次请求的时候返回。像是一个URL的优先队列，决定了下一个要抓取的网址是什么，同时在这里会去除重复的网址。</li>
+<li>下载器中间件：位于Scrapy引擎和下载器之间的框架，主要用于处理Scrapy引擎与下载器之间的请求及响应。代理IP和用户代理可以在这里设置。</li>
+<li>下载器：就是下载网页内容，并将网页内容返回给爬虫。</li>
+<li>Scrapy引擎：用来控制整个系统的数据处理流程，并进行事务处理的触发。</li>
+<li>爬虫：爬虫就是具体的爬虫程序了，用于从网页中提取自己需要的信息。也可以从中提取URL，让Scrapy继续爬取下一个页面。</li>
+<li>项目管道：负责处理爬虫从网页中爬取的项目，主要的功能就是持久化项目、验证项目的有效性、清除不需要的信息。当页面被爬虫解析后，将被送到项目管道，并经过几个特定的次序来处理其数据。</li>
+</ul>
+</li>
+<li><p>框架的运行过程：scrapy引擎从调度器中取出一个URL用于接下来的抓取；引擎把URL封装成一个请求传给下载器；下载器把资源下载下来，并封装成一个响应；然后爬虫解析响应；解析出的是项目，就交给项目管道进行下一步处理；解析出的是链接URL，就把URL交给调度器进行下一步的抓取。</p>
+</li>
+</ul>
+<p>这个框架还是挺强大的，内容很多，比如还要了解框架的数据流向、配置等。以上只是列出了部分内容，更多还需要去一步步掌握。</p>
+<h2 id="第20章-可视化爬虫"><a href="#第20章-可视化爬虫" class="headerlink" title="第20章 可视化爬虫"></a>第20章 可视化爬虫</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://whfree.top">wwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://whfree.top/posts/029303py/">https://whfree.top/posts/029303py/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whfree.top" target="_blank">Free</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></div><div class="post_share"><div class="social-share" data-image="https://img.whfree.top/post_cover/python_crawler_029303py.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/00001msj/" title="华为校招面经"><img class="cover" src="https://img.whfree.top/post_cover/huawei_university_recruitment_interview_00001msj.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">华为校招面经</div></div></a></div><div class="next-post pull-right"><a href="/posts/kr3dj930/" title="深度优先搜索——Python"><img class="cover" src="https://img.whfree.top/post_cover/dfs_algorithm_kr3dj930.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">深度优先搜索——Python</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/ccbca60a/" title="用户消费行为数据分析"><img class="cover" src="https://img.whfree.top/post_cover/user_date_analysis_ccbca60a.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-05</div><div class="title">用户消费行为数据分析</div></div></a></div><div><a href="/posts/03s4j9y2/" title="Python异步编程入门"><img class="cover" src="https://img.whfree.top/post_cover/python_asyncio_start_03s4j9y2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-04</div><div class="title">Python异步编程入门</div></div></a></div><div><a href="/posts/b8f11782/" title="sklearn常用模型使用小结"><img class="cover" src="https://img.whfree.top/post_cover/scikit_learn_logo_small_b8f11782.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-03</div><div class="title">sklearn常用模型使用小结</div></div></a></div><div><a href="/posts/1ef2gf23/" title="将Python包发布到PyPI"><img class="cover" src="https://img.whfree.top/post_cover/python_package_index_1ef2gf23.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-04</div><div class="title">将Python包发布到PyPI</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img.whfree.top/website_icon/free_man_circle.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wwh</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/freedomgod" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Python与数据分析</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">第1章 开发环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text">第2章 爬虫基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%BA%93-urllib"><span class="toc-number">3.</span> <span class="toc-text">第3章 网络库 urllib</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-urllib3"><span class="toc-number">4.</span> <span class="toc-text">第4章 urllib3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-requests"><span class="toc-number">5.</span> <span class="toc-text">第5章 requests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-Twisted%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6"><span class="toc-number">6.</span> <span class="toc-text">第6章 Twisted网络框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">7.</span> <span class="toc-text">第7章 正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-lxml%E4%B8%8EXPath"><span class="toc-number">8.</span> <span class="toc-text">第8章 lxml与XPath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-Beautiful-Soup%E5%BA%93"><span class="toc-number">9.</span> <span class="toc-text">第9章 Beautiful Soup库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-pyquery%E5%BA%93"><span class="toc-number">10.</span> <span class="toc-text">第10章 pyquery库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8"><span class="toc-number">11.</span> <span class="toc-text">第11章 文件存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8"><span class="toc-number">12.</span> <span class="toc-text">第12章 数据库存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC13%E7%AB%A0-%E6%8A%93%E5%8F%96%E5%BC%82%E6%AD%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">13.</span> <span class="toc-text">第13章 抓取异步数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC14%E7%AB%A0-%E5%8F%AF%E8%A7%81%E5%8D%B3%E5%8F%AF%E7%88%AC"><span class="toc-number">14.</span> <span class="toc-text">第14章 可见即可爬</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC15%E7%AB%A0-%E5%9F%BA%E4%BA%8ESplash%E7%9A%84%E7%88%AC%E8%99%AB"><span class="toc-number">15.</span> <span class="toc-text">第15章 基于Splash的爬虫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC16%E7%AB%A0-%E6%8A%93%E5%8F%96%E7%A7%BB%E5%8A%A8APP%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">16.</span> <span class="toc-text">第16章 抓取移动APP的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC17%E7%AB%A0-%E4%BD%BF%E7%94%A8Appium%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%8A%93%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">17.</span> <span class="toc-text">第17章 使用Appium在移动端抓取数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC18%E7%AB%A0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%88%AC%E8%99%AB"><span class="toc-number">18.</span> <span class="toc-text">第18章 多线程和多进程爬虫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC19%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%EF%BC%9AScrapy"><span class="toc-number">19.</span> <span class="toc-text">第19章 网络爬虫框架：Scrapy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC20%E7%AB%A0-%E5%8F%AF%E8%A7%86%E5%8C%96%E7%88%AC%E8%99%AB"><span class="toc-number">20.</span> <span class="toc-text">第20章 可视化爬虫</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By wwh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="https://img.whfree.top/icp.png"><span>赣 ICP 备 2021007374 号 - 1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.whfree.top/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css','waline-css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="/js/weather.js"></script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
